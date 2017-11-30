@@ -475,3 +475,22 @@ After doing this, you may fix the identity used for this commit with:
  create mode 100644 .talk-client.c.swp
  create mode 100644 dialog.cpp.autosave
  create mode 100644 dialog.h.autosave
+[master aaebd8b] Make IRCclient
+ Committer: Rodrigo I Gerbasi <rgerbasi@mc18.cs.purdue.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 12 files changed, 94 insertions(+), 370 deletions(-)
+ delete mode 100644 .talk-client.c.swp
+ delete mode 100644 dialog.cpp.autosave
+ delete mode 100644 dialog.h.autosave
+ rewrite main.o (63%)
