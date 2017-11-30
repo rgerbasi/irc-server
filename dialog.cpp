@@ -67,6 +67,56 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+int open_client_socket(char * host, int port) {
+    // Initialize socket address structure
+    struct  sockaddr_in socketAddress;
+
+    // Clear sockaddr structure
+    memset((char *)&socketAddress,0,sizeof(socketAddress));
+
+    // Set family to Internet
+    socketAddress.sin_family = AF_INET;
+
+    // Set port
+    socketAddress.sin_port = htons((u_short)port);
+
+    // Get host table entry for this host
+    struct  hostent  *ptrh = gethostbyname(host);
+    if ( ptrh == NULL ) {
+        perror("gethostbyname");
+        exit(1);
+    }
+
+    // Copy the host ip address to socket address structure
+    memcpy(&socketAddress.sin_addr, ptrh->h_addr, ptrh->h_length);
+
+    // Get TCP transport protocol entry
+    struct  protoent *ptrp = getprotobyname("tcp");
+    if ( ptrp == NULL ) {
+        perror("getprotobyname");
+        exit(1);
+    }
+
+    // Create a tcp socket
+    int sock;
+    sock = socket(PF_INET, SOCK_STREAM, ptrp->p_proto);
+    if (sock < 0) {
+        perror("socket");
+        exit(1);
+    }
+
+    // Connect the socket to the specified server
+    if (connect(sock, (struct sockaddr *)&socketAddress,
+            sizeof(socketAddress)) < 0) {
+        perror("connect");
+        exit(1);
+    }
+
+//	printf("AAH");
+    return sock;
+};
+
+
 class IRCClient{
 private:
     int argc;
@@ -88,55 +138,6 @@ public:
         this->user = argv[3];
         this->password = argv[4];
         //this->socket = open_client_socket(this->host,this->port)
-    }
-
-    int open_client_socket(char * host, int port) {
-        // Initialize socket address structure
-        struct  sockaddr_in socketAddress;
-
-        // Clear sockaddr structure
-        memset((char *)&socketAddress,0,sizeof(socketAddress));
-
-        // Set family to Internet
-        socketAddress.sin_family = AF_INET;
-
-        // Set port
-        socketAddress.sin_port = htons((u_short)port);
-
-        // Get host table entry for this host
-        struct  hostent  *ptrh = gethostbyname(host);
-        if ( ptrh == NULL ) {
-            perror("gethostbyname");
-            exit(1);
-        }
-
-        // Copy the host ip address to socket address structure
-        memcpy(&socketAddress.sin_addr, ptrh->h_addr, ptrh->h_length);
-
-        // Get TCP transport protocol entry
-        struct  protoent *ptrp = getprotobyname("tcp");
-        if ( ptrp == NULL ) {
-            perror("getprotobyname");
-            exit(1);
-        }
-
-        // Create a tcp socket
-        int sock;
-        sock = socket(PF_INET, SOCK_STREAM, ptrp->p_proto);
-        if (sock < 0) {
-            perror("socket");
-            exit(1);
-        }
-
-        // Connect the socket to the specified server
-        if (connect(sock, (struct sockaddr *)&socketAddress,
-                sizeof(socketAddress)) < 0) {
-            perror("connect");
-            exit(1);
-        }
-
-    //	printf("AAH");
-        return sock;
     }
 
 
