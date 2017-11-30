@@ -114,6 +114,9 @@ class QPushButton;
 class QTextEdit;
 class QListWidget;
 
+//my addition
+class IRCClient;
+
 class Dialog : public QDialog
 {
     Q_OBJECT
