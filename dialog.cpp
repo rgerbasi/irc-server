@@ -111,6 +111,8 @@ Dialog::Dialog(int argc, char * argv[])
 {
     createMenu();
 
+    IRCClient * client = new IRCClient(argc, argv);
+
     QVBoxLayout *mainLayout = new QVBoxLayout;
 
     // Rooms List

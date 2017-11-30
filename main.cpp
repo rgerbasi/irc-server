@@ -130,7 +130,7 @@ public:
         //parsing all of argv and doing stuff woo
         if(argc < 5) printUsage();
         this->host = argv[1];
-        this->port = argv[2];
+        this->port = atoi(argv[2]);
         this->user = argv[3];
         this->password = argv[4];
 
