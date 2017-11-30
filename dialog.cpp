@@ -121,7 +121,8 @@ public:
         }
 
         // Create a tcp socket
-        int sock = socket(PF_INET, SOCK_STREAM, ptrp->p_proto);
+        int sock;
+        sock = socket(PF_INET, SOCK_STREAM, ptrp->p_proto);
         if (sock < 0) {
             perror("socket");
             exit(1);
@@ -139,8 +140,7 @@ public:
     }
 
 
-    void printUsage()
-    {
+    void printUsage(){
         printf("Usage: client host port user password\n");
         exit(1);
     }
