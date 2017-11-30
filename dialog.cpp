@@ -69,12 +69,12 @@
 
 #define MAX_RESPONSE (10 * 1024)
 
-int open_client_socket(char * host, int port) {
+int open_client_socket(std::string* host, int port) {
     // Initialize socket address structure
     struct  sockaddr_in socketAddress;
 
     // Clear sockaddr structure
-    memset((char *)&socketAddress,0,sizeof(socketAddress));
+    memset((std::string*)&socketAddress,0,sizeof(socketAddress));
 
     // Set family to Internet
     socketAddress.sin_family = AF_INET;
@@ -122,16 +122,16 @@ int open_client_socket(char * host, int port) {
 class IRCClient{
 private:
     int argc;
-    char * argv[];
+    std::string* argv[];
 public:
-    char * user;
-    char * password;
-    char * host;
-    char * sport;
+    std::string* user;
+    std::string* password;
+    std::string* host;
+    std::string* sport;
     int port;
     int socket;
 
-    IRCClient(int argc, char * argv[]){
+    IRCClient(int argc, std::string* argv[]){
         //constructor
         //parsing all of argv and doing stuff woo
         if(argc < 5) printUsage();
@@ -142,7 +142,7 @@ public:
         //this->socket = open_client_socket(this->host,this->port)
     }
 
-    int sendCommand(char *  host, int port, char * command, char * response) {
+    int sendCommand(std::string*  host, int port, std::string* command, std::string* response) {
 
         int sock = open_client_socket( host, port);
 
@@ -193,8 +193,8 @@ void Dialog::sendAction()
 void Dialog::newUserAction()
 {
     printf("New User Button\n");
-    char * response = new char[MAX_RESPONSE];
-    client->sendCommand(client->host, client->port, "ADD-USER Bard Bard",(char *) response);
+    std::string* response = new std::string[MAX_RESPONSE];
+    client->sendCommand(client->host, client->port, "ADD-USER Bard Bard",(std::string*) response);
 
 
 }
@@ -204,12 +204,12 @@ void Dialog::timerAction()
     printf("Timer wakeup\n");
     messageCount++;
 
-    char message[50];
+    std::stringmessage[50];
     sprintf(message,"Timer Refresh New message %d",messageCount);
     allMessages->append(message);
 }
 
-Dialog::Dialog(int argc, char * argv[])
+Dialog::Dialog(int argc, std::string* argv[])
 {
     createMenu();
 
@@ -269,20 +269,20 @@ Dialog::Dialog(int argc, char * argv[])
 
     // Populate rooms
     for (int i = 0; i < 20; i++) {
-        char s[50];
+        std::strings[50];
         sprintf(s,"Room %d", i);
         roomsList->addItem(s);
     }
 
     // Populate users
     for (int i = 0; i < 20; i++) {
-        char s[50];
+        std::strings[50];
         sprintf(s,"User %d", i);
         usersList->addItem(s);
     }
 
     for (int i = 0; i < 20; i++) {
-        char s[50];
+        std::strings[50];
         sprintf(s,"Message %d", i);
         allMessages->append(s);
     }
