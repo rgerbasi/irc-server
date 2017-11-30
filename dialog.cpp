@@ -107,7 +107,7 @@ void Dialog::timerAction()
     allMessages->append(message);
 }
 
-Dialog::Dialog(IRCClient * client)
+Dialog::Dialog(int argc, char * argv[])
 {
     createMenu();
 
