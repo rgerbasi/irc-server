@@ -134,8 +134,10 @@ public:
             exit(1);
         }
 
+    //	printf("AAH");
         return sock;
     }
+
 
     void printUsage()
     {
