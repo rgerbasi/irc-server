@@ -573,3 +573,22 @@ After doing this, you may fix the identity used for this commit with:
     git commit --amend --reset-author
 
  3 files changed, 55 insertions(+), 50 deletions(-)
+[master d815299] Make IRCclient
+ Committer: Rodrigo I Gerbasi <rgerbasi@mc18.cs.purdue.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 9 files changed, 68 insertions(+), 16 deletions(-)
+ rewrite IRCCLient (76%)
+ create mode 100644 dialog.o
+ create mode 100644 main.o
+ rewrite moc_dialog.o (64%)
