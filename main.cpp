@@ -114,38 +114,6 @@
 #include <unistd.h>
 #include <stdlib.h>
 
-class IRCClient{
-private:
-    int argc;
-    char * argv[];
-public:
-    char * user;
-    char * password;
-    char * host;
-    char * sport;
-    int port;
-
-    IRCClient(int argc, char * argv[]){
-        //constructor
-        //parsing all of argv and doing stuff woo
-        if(argc < 5) printUsage();
-        this->host = argv[1];
-        this->port = atoi(argv[2]);
-        this->user = argv[3];
-        this->password = argv[4];
-
-
-    }
-
-    void printUsage()
-    {
-        printf("Usage: client host port user password\n");
-        exit(1);
-    }
-
-
-
-};
 
 
 int main(int argc, char *argv[])
