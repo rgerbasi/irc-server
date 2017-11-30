@@ -193,7 +193,7 @@ void Dialog::sendAction()
 void Dialog::newUserAction()
 {
     printf("New User Button\n");
-    char * response = new char[MAX_RESPONSE];
+    char response[MAX_RESPONSE];
     client->sendCommand(client->host, client->port, "ADD-USER Bard Bard",(char *) response);
 
 
