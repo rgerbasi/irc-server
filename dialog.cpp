@@ -180,15 +180,9 @@ public:
 
 
 
-
 };
 
-
-
-
-
-
-
+//reminder : command is one string but it will contain all the arguements for commands
 
 void Dialog::sendAction()
 {
@@ -199,6 +193,10 @@ void Dialog::sendAction()
 void Dialog::newUserAction()
 {
     printf("New User Button\n");
+    char * response = new char[MAX_RESPONSE];
+    client->sendCommand(client->host, client->port, "ADD-USER Bard Bard", response);
+
+
 }
 
 void Dialog::timerAction()
