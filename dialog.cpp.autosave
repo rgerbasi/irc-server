@@ -52,6 +52,40 @@
 #include <QtWidgets>
 #include "dialog.h"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void Dialog::sendAction()
 {
     printf("Send Button\n");

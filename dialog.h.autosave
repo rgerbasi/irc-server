@@ -96,30 +96,60 @@
 
 ****************************************************************************/
 
-#include <QApplication>
 
-#include "dialog.h"
 
-class IRCClient{
-private:
-    char * argv[];
+#ifndef DIALOG_H
+#define DIALOG_H
+
+#include <QDialog>
+
+class QAction;
+class QDialogButtonBox;
+class QGroupBox;
+class QLabel;
+class QLineEdit;
+class QMenu;
+class QMenuBar;
+class QPushButton;
+class QTextEdit;
+class QListWidget;
+
+class Dialog : public QDialog
+{
+    Q_OBJECT
 public:
-    IRCClient(){}
+    Dialog();
+private:
+    int messageCount;
 
+    void createMenu();
+    void createHorizontalGroupBox();
+    void createGridGroupBox();
+    void createFormGroupBox();
 
+protected:
+    enum { NumGridRows = 3, NumButtons = 4 };
 
+    QMenuBar *menuBar;
 
+    QMenu *fileMenu;
+    QAction *exitAction;
 
+    QListWidget * roomsList;
+    QListWidget * usersList;
+    QTextEdit * allMessages;
+    QTextEdit * inputMessage;
+    QPushButton * sendButton;
+    QPushButton * newUserButton;
+    QTimer * timer;
+
+private slots:
+    void sendAction();
+    void newUserAction();
+    void timerAction();
+    
 };
 
 
-int main(int argc, char *argv[])
-{
-    QApplication app(argc, argv);
-    Dialog dialog;
-    dialog.show();
-
-    return app.exec();
-
-}
+#endif // DIALOG_H
 
