@@ -67,6 +67,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+#define MAX_RESPONSE (10 * 1024)
+
 int open_client_socket(char * host, int port) {
     // Initialize socket address structure
     struct  sockaddr_in socketAddress;
@@ -140,6 +142,36 @@ public:
         //this->socket = open_client_socket(this->host,this->port)
     }
 
+    int sendCommand(char *  host, int port, char * command, char * response) {
+
+        int sock = open_client_socket( host, port);
+
+        if (sock<0) {
+            return 0;
+        }
+
+        // Send command
+        write(sock, command, strlen(command));
+        write(sock, "\r\n",2);
+
+        //Print copy to stdout
+        write(1, command, strlen(command));
+        write(1, "\r\n",2);
+
+        // Keep reading until connection is closed or MAX_REPONSE
+        int n = 0;
+        int len = 0;
+        while ((n=read(sock, response+len, MAX_RESPONSE - len))>0) {
+            len += n;
+        }
+        response[len]=0;
+
+        printf("response:\n%s\n", response);
+
+        close(sock);
+
+        return 1;
+    }
 
     void printUsage(){
         printf("Usage: client host port user password\n");
