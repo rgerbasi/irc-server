@@ -52,6 +52,40 @@
 #include <QtWidgets>
 #include "dialog.h"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 void Dialog::sendAction()
 {
     printf("Send Button\n");
@@ -73,7 +107,7 @@ void Dialog::timerAction()
     allMessages->append(message);
 }
 
-Dialog::Dialog()
+Dialog::Dialog(IRCClient * client)
 {
     createMenu();
 

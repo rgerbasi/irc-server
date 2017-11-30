@@ -1,5 +1,4 @@
 
-
 #include <time.h>
 //#include <curses.h>
 #include <sys/types.h>
@@ -115,7 +114,7 @@ main(int argc, char **argv) {
 	}
 
 	host = argv[1];
-	sport = argv[2];
+        sport = argv[2];
 	command = argv[3];
 
 	sscanf(sport, "%d", &port);

@@ -118,7 +118,7 @@ class Dialog : public QDialog
 {
     Q_OBJECT
 public:
-    Dialog();
+    Dialog(IRCClient * client);
 private:
     int messageCount;
 
@@ -147,6 +147,7 @@ private slots:
     void sendAction();
     void newUserAction();
     void timerAction();
+    
 };
 
 
