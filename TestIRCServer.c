@@ -62,6 +62,7 @@ int open_client_socket(char * host, int port) {
 		exit(1);
 	}
 	
+	printf("AAH");
 	return sock;
 }
 
