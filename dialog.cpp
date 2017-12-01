@@ -183,11 +183,14 @@ public:
 };
 
 //reminder : command is one string but it will contain all the arguements for commands
+//host: 120.10.12.218
 
 void Dialog::sendAction()
-{
-    printf("Send Button\n");
-    //system("./T   ")
+{    
+     printf("Send Button\n");
+     char response[MAX_RESPONSE];
+    //client->sendCommand(client->host, client->port)
+
 }
 
 void Dialog::newUserAction()
