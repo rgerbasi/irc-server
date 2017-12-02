@@ -98,6 +98,8 @@
 
 #include <QApplication>
 
+#include <QtWidgets>
+
 #include "dialog.h"
 
 //addition number2 class to check user and password
