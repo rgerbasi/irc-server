@@ -218,6 +218,8 @@ public:
         mainLayout->addLayout(loginLayout);
         mainLayout->addLayout(layoutButtons);
 
+        printf("Verification setlayout manlayout\n");
+
         setLayout(mainLayout);
 
     }
@@ -356,6 +358,7 @@ Dialog::Dialog(int argc, char * argv[])
     timer->start(5000);
 
     //new window hopefully
+    printf("Verfication show\n");
     Verification window(client);
     window.show();
 
