@@ -115,7 +115,7 @@ public slots:
         //heres where we do the thing;
         //  printf("user : %s\npass: %s\n", username, password);
 
-        i//*success = 1;
+        //*success = 1;
 
     }
     //constructor
