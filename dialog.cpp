@@ -343,7 +343,7 @@ Dialog::Dialog(int argc, char * argv[])
 
     // Add layout to main window
     //new window hopefully
-    Verification window;
+    Verification window(client);
     window.show();
 
     setLayout(mainLayout);
