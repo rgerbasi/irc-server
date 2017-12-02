@@ -230,8 +230,8 @@ public:
 
         setLayout(mainLayout);
 
-        char * username = usernameText->text().toStdString().c_str();
-        char * password = passwordText->text().toStdString().c_str();
+        char * username = (char *)usernameText->text().toStdString().c_str();
+        char * password = (char *) passwordText->text().toStdString().c_str();
         int * success = 0;
         //client and verification steps
         IRCClient * client = new IRCClient(argc, argv);
