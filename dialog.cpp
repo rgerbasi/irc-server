@@ -133,11 +133,11 @@ public:
     IRCClient(int argc, char * argv[]){
         //constructor
         //parsing all of argv and doing stuff woo
-        if(argc < 5) printUsage();
+        if(argc != 3) printUsage();
         this->host = argv[1];
         this->port = atoi(argv[2]);
-        this->user = argv[3];
-        this->password = argv[4];
+      // this->user = argv[3];
+        //this->password = argv[4];
         //this->socket = open_client_socket(this->host,this->port)
     }
 
@@ -173,7 +173,7 @@ public:
     }
 
     void printUsage(){
-        printf("Usage: client host port user password\n");
+        printf("Usage: client host port\n");
         exit(1);
     }
 
@@ -188,7 +188,7 @@ public:
 class Verification : public QDialog{
 public:
     //constructor
-    Verification(IRCClient * client){
+    Verification(int argc, char * argv[]){
 
         //USER VERIFICATION HAPPENS HERE
         createMenu();
@@ -197,13 +197,13 @@ public:
 
         QVBoxLayout * userBox = new QVBoxLayout();
         QLabel * usernameLabel = new QLabel("Username:");
-        QTextEdit * usernameText = new QTextEdit;
+        QLineEdit * usernameText = new QLineEdit;
         userBox->addWidget(usernameLabel);
         userBox->addWidget(usernameText);
 
         QVBoxLayout * passwordBox = new QVBoxLayout();
         QLabel * passwordLabel = new QLabel("Password: ");
-        QTextEdit * passwordText = new QTextEdit;
+        QLineEdit * passwordText = new QLineEdit;
         passwordBox->addWidget(passwordLabel);
         passwordBox->addWidget(passwordText);
 
@@ -220,6 +220,11 @@ public:
         printf("Verification setlayout manlayout\n");
 
         setLayout(mainLayout);
+
+        //client and verification steps
+        IRCClient * client = new IRCClient(argc, argv);
+
+        Dialog
 
     }
 
@@ -265,11 +270,11 @@ void Dialog::timerAction()
     allMessages->append(message);
 }
 
-Dialog::Dialog(int argc, char * argv[])
+Dialog::Dialog(IRCClient * client)
 {
     createMenu();
     //
-    this->client = new IRCClient(argc, argv);
+    this->client = client;
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
 
@@ -356,11 +361,6 @@ Dialog::Dialog(int argc, char * argv[])
     connect(timer, SIGNAL (timeout()), this, SLOT (timerAction()));
     timer->start(5000);
 
-    //new window hopefully
-    printf("Verfication show\n");
-    Verification window(client);
-    window.show();
-    window.exec();
 
 }
 
