@@ -176,6 +176,7 @@ public:
         printf("Usage: client host port\n");
         exit(1);
     }
+
 };
 
 //reminder : command is one string but it will contain all the arguements for commands
