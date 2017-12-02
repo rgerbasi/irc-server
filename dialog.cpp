@@ -213,6 +213,7 @@ public:
 
         QHBoxLayout *layoutButtons = new QHBoxLayout;
         QPushButton * logInButton = new QPushButton("Log In");
+        layoutButtons->addWidget(logInButton);
 
         mainLayout->addLayout(loginLayout);
         mainLayout->addLayout(layoutButtons);
