@@ -110,10 +110,10 @@ class IRCClient;
 //addition number2 class to check user and password
 class Verification : public QDialog{
 public slots:
-    void loginAction(char * username, char * password, int * success){
+    void loginAction(){
         printf("log in action\n");
         //heres where we do the thing;
-        printf("user : %s\npass: %s\n", username, password);
+        //printf("user : %s\npass: %s\n", username, password);
 
         *success = 1;
 
@@ -143,6 +143,8 @@ public slots:
 
         QHBoxLayout *layoutButtons = new QHBoxLayout;
         QPushButton * logInButton = new QPushButton("Log In");
+        QPushButton * addnewUser = new QPushButton("Create User");
+        layoutButtons->addWidget(logInButton);
         layoutButtons->addWidget(logInButton);
 
         mainLayout->addLayout(loginLayout);
@@ -152,12 +154,9 @@ public slots:
 
         setLayout(mainLayout);
 
-        char * username = (char *)usernameText->text().toStdString().c_str();
-        char * password = (char *) passwordText->text().toStdString().c_str();
-        int * success = 0;
         //client and verification steps
         //IRCClient * client = new IRCClient(argc, argv);
-        connect(logInButton, SIGNAL (released()), this, SLOT (loginAction(username, password, success)));
+        connect(logInButton, SIGNAL (released()), this, SLOT (loginAction());
 
     }
 
