@@ -208,7 +208,8 @@ public:
         passwordBox->addWidget(passwordLabel);
         passwordBox->addWidget(passwordText);
 
-
+        loginLayout->addLayout(userBox);
+        loginLayout->addLayout(passwordBox);
 
 
         mainLayout->addLayout(loginLayout);
@@ -220,9 +221,9 @@ public:
 
 
     void createMenu(){
-        menuBar = new QMenuBar;
-        fileMenu = new QMenu(tr("&File"), this);
-        exitAction = fileMenu->addAction(tr("E&xit"));
+        QMenuBar * menuBar = new QMenuBar;
+        QMenu * fileMenu = new QMenu(tr("&File"), this);
+        QAction * exitAction = fileMenu->addAction(tr("E&xit"));
         menuBar->addMenu(fileMenu);
 
         connect(exitAction, SIGNAL(triggered()), this, SLOT(accept()));
