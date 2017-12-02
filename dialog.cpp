@@ -116,7 +116,7 @@ int open_client_socket(char * host, int port) {
 
 //	printf("AAH");
     return sock;
-};
+}
 
 class IRCClient{
 private:
