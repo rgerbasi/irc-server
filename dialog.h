@@ -122,7 +122,7 @@ class Dialog : public QDialog
 {
     Q_OBJECT
 public:
-    Dialog(IRCClient * client);
+    Dialog(char * argv[], char * username, char * password);
     IRCClient * client;
 
 private:

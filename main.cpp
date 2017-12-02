@@ -107,16 +107,6 @@
 
 class IRCClient;
 
-IRCClient::IRCClient(int argc, char * argv[]){
-    //constructor
-    //parsing all of argv and doing stuff woo
-    if(argc != 3) printUsage();
-    this->host = argv[1];
-    this->port = atoi(argv[2]);
-  // this->user = argv[3];
-    //this->password = argv[4];
-    //this->socket = open_client_socket(this->host,this->port)
-}
 //addition number2 class to check user and password
 class Verification : public QDialog{
 public:
@@ -128,7 +118,6 @@ public:
         *success = 1;
 
     }
-
     //constructor
     Verification(int argc, char * argv[]){
 
@@ -167,11 +156,11 @@ public:
         char * password = (char *) passwordText->text().toStdString().c_str();
         int * success = 0;
         //client and verification steps
-        IRCClient * client = new IRCClient(argc, argv);
+        //IRCClient * client = new IRCClient(argc, argv);
         connect(logInButton, SIGNAL (released()), this, SLOT (loginAction(username, password, success)));
 
         if(*success){
-            Dialog dialog(client);
+            Dialog dialog(argv, username, password);
             dialog.show();
             dialog.exec();
         }
