@@ -115,8 +115,8 @@ class QTextEdit;
 class QListWidget;
 
 //my addition
-class IRCClient;
-class Verification;
+//class IRCClient;
+//class Verification;
 
 class Dialog : public QDialog
 {
