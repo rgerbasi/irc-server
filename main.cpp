@@ -100,7 +100,7 @@
 
 #include "dialog.h"
 
-
+class Verification;
 
 int main(int argc, char *argv[])
 {
