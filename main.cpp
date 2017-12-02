@@ -154,8 +154,7 @@ public slots:
 
         char * username = (char *)usernameText->text().toStdString().c_str();
         char * password = (char *) passwordText->text().toStdString().c_str();
-        int * success;
-        *success = 0;
+        int * success = 0;
         //client and verification steps
         //IRCClient * client = new IRCClient(argc, argv);
         connect(logInButton, SIGNAL (released()), this, SLOT (loginAction(username, password, success)));
