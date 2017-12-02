@@ -106,6 +106,17 @@
 #define MAX_RESPONSE (10 * 1024)
 
 class IRCClient;
+
+IRCClient::IRCClient(int argc, char * argv[]){
+    //constructor
+    //parsing all of argv and doing stuff woo
+    if(argc != 3) printUsage();
+    this->host = argv[1];
+    this->port = atoi(argv[2]);
+  // this->user = argv[3];
+    //this->password = argv[4];
+    //this->socket = open_client_socket(this->host,this->port)
+}
 //addition number2 class to check user and password
 class Verification : public QDialog{
 public:
