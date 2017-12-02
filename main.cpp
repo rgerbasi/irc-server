@@ -105,7 +105,7 @@
 
 #define MAX_RESPONSE (10 * 1024)
 
-
+class IRCClient;
 //addition number2 class to check user and password
 class Verification : public QDialog{
 public:
