@@ -185,10 +185,56 @@ public:
 //reminder : command is one string but it will contain all the arguements for commands
 //host: 120.10.12.218
 
+//addition number2 class to check user and password
+class Verification : public QDialog{
+public:
+    //constructor
+    Verification(IRCClient * client){
+
+        //USER VERIFICATION HAPPENS HERE
+        createMenu();
+        QVBoxLayout * mainLayout = new QVBoxLayout;
+        QHBoxLayout * loginLayout = new QHBoxLayout();
+
+        QVBoxLayout * userBox = new QVBoxLayout();
+        QLabel * usernameLabel = new QLabel("Username:");
+        QTextEdit * usernameText = new QTextEdit;
+        userBox->addWidget(usernameLabel);
+        userBox->addWidget(usernameText);
+
+        QVBoxLayout * passwordBox = new QVBoxLayout();
+        QLabel * passwordLabel = new QLabel("Password: ");
+        QTextEdit * passwordText = new QTextEdit;
+        passwordBox->addWidget(passwordLabel);
+        passwordBox->addWidget(passwordText);
+
+
+
+
+        mainLayout->addLayout(loginLayout);
+    }
+
+
+
+
+
+
+    void createMenu(){
+        menuBar = new QMenuBar;
+        fileMenu = new QMenu(tr("&File"), this);
+        exitAction = fileMenu->addAction(tr("E&xit"));
+        menuBar->addMenu(fileMenu);
+
+        connect(exitAction, SIGNAL(triggered()), this, SLOT(accept()));
+    }
+};
+
+//end of verification class
+
 void Dialog::sendAction()
 {    
      printf("Send Button\n");
-     char response[MAX_RESPONSE];
+     //char response[MAX_RESPONSE];
     //client->sendCommand(client->host, client->port)
 
 }
@@ -215,7 +261,7 @@ void Dialog::timerAction()
 Dialog::Dialog(int argc, char * argv[])
 {
     createMenu();
-
+    //
     this->client = new IRCClient(argc, argv);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
@@ -291,6 +337,9 @@ Dialog::Dialog(int argc, char * argv[])
     }
 
     // Add layout to main window
+
+
+
     setLayout(mainLayout);
 
     setWindowTitle(tr("CS240 IRC Client"));
@@ -314,3 +363,7 @@ void Dialog::createMenu()
 
     connect(exitAction, SIGNAL(triggered()), this, SLOT(accept()));
 }
+
+
+//NEW WINDOW FOR USER VERIFICATION CLASS
+
