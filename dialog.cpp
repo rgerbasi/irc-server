@@ -187,6 +187,15 @@ public:
 //addition number2 class to check user and password
 class Verification : public QDialog{
 public:
+    void loginAction(char * username, char * password, int * success){
+        printf("log in action\n");
+        //heres where we do the thing;
+        printf("user : %s\npass: %s\n", username, password);
+
+        *success = 1;
+
+    }
+
     //constructor
     Verification(int argc, char * argv[]){
 
@@ -221,11 +230,18 @@ public:
 
         setLayout(mainLayout);
 
+        char * username = usernameText->text().toStdString().c_str();
+        char * password = passwordText->text().toStdString().c_str();
+        int * success = 0;
         //client and verification steps
         IRCClient * client = new IRCClient(argc, argv);
+        connect(logInButton, SIGNAL (released()), this, SLOT (loginAction(username, password, success)));
 
-        Dialog
-
+        if(*success){
+            Dialog dialog(client);
+            Dialog.show();
+            Dialog.exec();
+        }
     }
 
 
