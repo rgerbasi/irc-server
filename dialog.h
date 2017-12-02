@@ -122,6 +122,7 @@ class Dialog : public QDialog
     Q_OBJECT
 public:
     Dialog(IRCClient * client);
+    IRCClient * client;
 
 private:
     int messageCount;
