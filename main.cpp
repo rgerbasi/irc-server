@@ -113,9 +113,9 @@ public slots:
     void loginAction(){
         printf("log in action\n");
         //heres where we do the thing;
-        //printf("user : %s\npass: %s\n", username, password);
+        //  printf("user : %s\npass: %s\n", username, password);
 
-        *success = 1;
+        i//*success = 1;
 
     }
     //constructor
@@ -156,7 +156,7 @@ public slots:
 
         //client and verification steps
         //IRCClient * client = new IRCClient(argc, argv);
-        connect(logInButton, SIGNAL (released()), this, SLOT (loginAction());
+        connect(logInButton, SIGNAL (released()), this, SLOT (loginAction()));
 
     }
 
