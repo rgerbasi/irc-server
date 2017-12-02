@@ -118,7 +118,6 @@ int open_client_socket(char * host, int port) {
     return sock;
 };
 
-
 class IRCClient{
 private:
     int argc;
