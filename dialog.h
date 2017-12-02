@@ -116,7 +116,7 @@ class QListWidget;
 
 //my addition
 class IRCClient;
-class Verification;
+
 
 class Dialog : public QDialog
 {
@@ -156,6 +156,15 @@ private slots:
     
 };
 
+class Verification : public QDialog{
 
+public:
+    Verification(int argc, char * argv[]);
+
+    void createMenu();
+
+public slots:
+    void loginAction(char * usernmame, char * password);
+}
 #endif // DIALOG_H
 
