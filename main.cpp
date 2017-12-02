@@ -118,6 +118,7 @@ public slots:
         //*success = 1;
 
     }
+public:
     //constructor
     Verification(int argc, char * argv[]){
 
@@ -143,8 +144,8 @@ public slots:
 
         QHBoxLayout *layoutButtons = new QHBoxLayout;
         QPushButton * logInButton = new QPushButton("Log In");
-        QPushButton * addnewUser = new QPushButton("Create User");
-        layoutButtons->addWidget(logInButton);
+        QPushButton * addnewUser = new QPushButton("New User");
+        layoutButtons->addWidget(addnewUser);
         layoutButtons->addWidget(logInButton);
 
         mainLayout->addLayout(loginLayout);
@@ -159,8 +160,6 @@ public slots:
         connect(logInButton, SIGNAL (released()), this, SLOT (loginAction()));
 
     }
-
-
 
     void createMenu(){
         QMenuBar * menuBar = new QMenuBar;
