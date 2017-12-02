@@ -109,7 +109,7 @@ class IRCClient;
 
 //addition number2 class to check user and password
 class Verification : public QDialog{
-public:
+public slots:
     void loginAction(char * username, char * password, int * success){
         printf("log in action\n");
         //heres where we do the thing;
