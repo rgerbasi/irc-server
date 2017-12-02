@@ -159,12 +159,8 @@ public slots:
         //IRCClient * client = new IRCClient(argc, argv);
         connect(logInButton, SIGNAL (released()), this, SLOT (loginAction(username, password, success)));
 
-        if(*success){
-            Dialog dialog(argv, username, password);
-            dialog.show();
-            dialog.exec();
-        }
     }
+};
 
 
 
