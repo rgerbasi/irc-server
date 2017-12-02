@@ -341,10 +341,7 @@ Dialog::Dialog(int argc, char * argv[])
         allMessages->append(s);
     }
 
-    // Add layout to main window
-    //new window hopefully
-    Verification window(client);
-    window.show();
+    // Add layout to main windo
 
     setLayout(mainLayout);
 
@@ -356,6 +353,12 @@ Dialog::Dialog(int argc, char * argv[])
     timer = new QTimer(this);
     connect(timer, SIGNAL (timeout()), this, SLOT (timerAction()));
     timer->start(5000);
+
+    //new window hopefully
+    Verification window(client);
+    window.show();
+
+
 }
 
 
