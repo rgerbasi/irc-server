@@ -160,8 +160,6 @@ public slots:
         connect(logInButton, SIGNAL (released()), this, SLOT (loginAction(username, password, success)));
 
     }
-};
-
 
 
 
