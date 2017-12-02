@@ -360,7 +360,7 @@ Dialog::Dialog(int argc, char * argv[])
     printf("Verfication show\n");
     Verification window(client);
     window.show();
-
+    window.exec();
 
 }
 
