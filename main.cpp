@@ -106,7 +106,7 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
     //IRCClient * client = new IRCClient(argc, argv);
-    Dialog dialog(argc, argv);
+    Verification dialog(argc, argv);
     dialog.show();
 
     return app.exec();
