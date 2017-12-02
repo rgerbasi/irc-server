@@ -109,15 +109,6 @@ class IRCClient;
 
 //addition number2 class to check user and password
 class Verification : public QDialog{
-public slots:
-    void loginAction(){
-        printf("log in action\n");
-        //heres where we do the thing;
-        //  printf("user : %s\npass: %s\n", username, password);
-
-        //*success = 1;
-
-    }
 public:
     //constructor
     Verification(int argc, char * argv[]){
@@ -157,7 +148,16 @@ public:
 
         //client and verification steps
         //IRCClient * client = new IRCClient(argc, argv);
-        connect(logInButton, SIGNAL (released()), this, SLOT (loginAction()));
+        connect(logInButton, SIGNAL (released()), this, (logInAction()));
+
+    }
+
+    void logInAction(){
+        printf("log in action\n");
+        //heres where we do the thing;
+        //  printf("user : %s\npass: %s\n", username, password);
+
+        //*success = 1;
 
     }
 
