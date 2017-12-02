@@ -239,8 +239,8 @@ public:
 
         if(*success){
             Dialog dialog(client);
-            Dialog.show();
-            Dialog.exec();
+            dialog.show();
+            dialog.exec();
         }
     }
 
