@@ -130,6 +130,7 @@ public:
     int port;
     int socket;
 
+  /*
     IRCClient(int argc, char * argv[]){
         //constructor
         //parsing all of argv and doing stuff woo
@@ -140,7 +141,7 @@ public:
         //this->password = argv[4];
         //this->socket = open_client_socket(this->host,this->port)
     }
-
+*/
     int sendCommand(char *  host, int port, char * command, char * response) {
 
         int sock = open_client_socket( host, port);
