@@ -211,11 +211,15 @@ public:
         loginLayout->addLayout(userBox);
         loginLayout->addLayout(passwordBox);
 
+        QHBoxLayout *layoutButtons = new QHBoxLayout;
+        QPushButton * logInButton = new QPushButton("Log In");
 
         mainLayout->addLayout(loginLayout);
+        mainLayout->addLayout(layoutButtons);
+
+        setLayout(mainLayout);
+
     }
-
-
 
 
 
@@ -338,8 +342,9 @@ Dialog::Dialog(int argc, char * argv[])
     }
 
     // Add layout to main window
-
-
+    //new window hopefully
+    Verification window;
+    window.show();
 
     setLayout(mainLayout);
 
