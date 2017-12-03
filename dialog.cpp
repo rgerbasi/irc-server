@@ -97,7 +97,7 @@ int IRCClient::open_client_socket(char * host, int port){
     // Get host table entry for this host
     struct  hostent  *ptrh = gethostbyname(host);
     if ( ptrh == NULL ) {
-        printf("get host by name returned null\n")
+        printf("get host by name returned null\n");
         perror("gethostbyname");
         exit(1);
     }
