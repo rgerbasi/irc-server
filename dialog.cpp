@@ -133,14 +133,16 @@ int IRCClient::sendCommand(char *  host, int port, char * command, char * respon
     }
 
     // Send command
+    printf("writing command to socket\n");
     write(sock, command, strlen(command));
     write(sock, "\r\n",2);
 
     //Print copy to stdout
-    write(1, command, strlen(command));
-    write(1, "\r\n",2);
+    //write(1, command, strlen(command));
+    //write(1, "\r\n",2);
 
     // Keep reading until connection is closed or MAX_REPONSE
+    printf("response building\n");
     int n = 0;
     int len = 0;
     while ((n=read(sock, response+len, MAX_RESPONSE - len))>0) {
