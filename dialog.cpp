@@ -97,6 +97,7 @@ int IRCClient::open_client_socket(char * host, int port){
     // Get host table entry for this host
     struct  hostent  *ptrh = gethostbyname(host);
     if ( ptrh == NULL ) {
+        printf("get host by name returned null\n")
         perror("gethostbyname");
         exit(1);
     }
@@ -124,6 +125,7 @@ int IRCClient::open_client_socket(char * host, int port){
     printf("before connecting socket\n");
     if (connect(sock, (struct sockaddr *)&socketAddress,
             sizeof(socketAddress)) < 0) {
+        printf("error from connect\n");
         perror("connect");
         exit(1);
     }
@@ -199,7 +201,10 @@ void Verification::newUserAction(){
 //new user actoin use clien tto talk to server
     char * username = (char *) usernameText->text().toStdString().c_str();
     char * password = (char *) passwordText->text().toStdString().c_str();
-
+    std::string command = "ADD-USER";
+    command = command + " " + username + " " + password;
+    char * response = new char[MAX_RESPONSE];
+    client->sendCommand(client->host,client->port,(char *)command.c_str(), response);
 
 }
 Verification::Verification(int argc, char *argv[]){
