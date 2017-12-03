@@ -199,13 +199,15 @@ void Verification::loginAction(){
         QMessageBox msgbox;
         msgbox.setText("Welcome Sister.");
         msgbox.exec();
-        Dialog dialog;
+        client->username = username;
+        client->password = password;
+        Dialog dialog(client);
         dialog.show();
         dialog.exec();
     } else {
         QMessageBox msgbox;
         msgbox.setText("Log in error.");
-        msgBox.exec();
+        msgbox.exec();
     }
 }
 void Verification::newUserAction(){
