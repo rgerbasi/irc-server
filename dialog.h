@@ -133,6 +133,9 @@ public:
     Verification(int argc, char * argv[]);
     IRCClient * client;
 
+    QLineEdit * usernameText;
+    QLineEdit * passwordText;
+
 private:
     void createMenu();
     void printUsage();

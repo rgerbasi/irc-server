@@ -53,7 +53,7 @@
 #include "dialog.h"
 
 
-
+//host: 120.10.12.218
 //my additions
 #include <time.h>
 //#include <curses.h>
@@ -170,11 +170,12 @@ void Verification::createMenu(){
 }
 void Verification::loginAction(){
 //login action user clien tot talk to server
-
+    //construct dialog here?
 
 }
 void Verification::newUserAction(){
 //new user actoin use clien tto talk to server
+
 
 }
 Verification::Verification(int argc, char *argv[]){
@@ -193,12 +194,12 @@ Verification::Verification(int argc, char *argv[]){
     QHBoxLayout * loginLayout = new QHBoxLayout();
     QVBoxLayout * userBox = new QVBoxLayout();
     QLabel * usernameLabel = new QLabel("Username:");
-    QLineEdit * usernameText = new QLineEdit;
+    usernameText = new QLineEdit;
     userBox->addWidget(usernameLabel);
     userBox->addWidget(usernameText);
     QVBoxLayout * passwordBox = new QVBoxLayout();
     QLabel * passwordLabel = new QLabel("Password: ");
-    QLineEdit * passwordText = new QLineEdit;
+    passwordText = new QLineEdit;
     passwordBox->addWidget(passwordLabel);
     passwordBox->addWidget(passwordText);
     loginLayout->addLayout(userBox);
