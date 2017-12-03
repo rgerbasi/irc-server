@@ -134,7 +134,7 @@ public:
     IRCClient * client;
 
 private:
-    createMenu();
+    void createMenu();
 private slots:
     void loginAction();
     void newUserAction();
