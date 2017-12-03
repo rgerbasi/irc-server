@@ -171,13 +171,20 @@ void Verification::createMenu(){
 void Verification::loginAction(){
 //login action user clien tot talk to server
     //construct dialog here?
+   //LineEdit*test;
 
     char * username = (char *) usernameText->text().toStdString().c_str();
     char * password = (char *) passwordText->text().toStdString().c_str();
-    printf("user is %s\npass is %s\n", username, password);
+    printf("User is %s\npass is %s\n", username, password);
+    char * response = new char[MAX_RESPONSE];
+    //sending command ot server to check log in
+    client->sendCommand(client->host,client->port,"LOG-IN", response)
+
 }
 void Verification::newUserAction(){
 //new user actoin use clien tto talk to server
+    char * username = (char *) usernameText->text().toStdString().c_str();
+    char * password = (char *) passwordText->text().toStdString().c_str();
 
 
 }
@@ -218,16 +225,9 @@ Verification::Verification(int argc, char *argv[]){
 
     connect(logInButton, SIGNAL (released()), this, SLOT (loginAction()));
     connect(addnewUser, SIGNAL (released()), this, SLOT (newUserAction()));
-
-
 }
-
-
-
 //reminder : command is one string but it will contain all the arguements for commands
 //host: 120.10.12.218
-
-
 void Dialog::sendAction()
 {    
      printf("Send Button\n");
