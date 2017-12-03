@@ -185,8 +185,8 @@ void Verification::loginAction(){
     //construct dialog here?
    //LineEdit*test;
 
-    char * username = (char *) usernameText->text().toStdString().c_str();
-    char * password = (char *) passwordText->text().toStdString().c_str();
+    char * username = strdup((char *) usernameText->text().toStdString().c_str());
+    char * password = strdup((char *) passwordText->text().toStdString().c_str());
     printf("User is %s\npass is %s\n", username, password);
     std::string command = "LOG-IN";
     command = command + " " + username + " " + password;
