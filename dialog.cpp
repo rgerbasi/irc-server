@@ -201,7 +201,7 @@ void Verification::loginAction(){
         msgbox.exec();
         client->username = username;
         client->password = password;
-        Dialog dialog(client);
+        Dialog dialog(client,this);
         dialog.show();
         dialog.exec();
     } else {
@@ -287,7 +287,7 @@ void Dialog::timerAction()
     allMessages->append(message);
 }
 
-Dialog::Dialog(IRCClient * client)
+Dialog::Dialog(IRCClient * client, Verification * verification)
 {
     createMenu();
     //

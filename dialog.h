@@ -149,8 +149,9 @@ class Dialog : public QDialog
 {
     Q_OBJECT
 public:
-    Dialog(IRCClient * client);
+    Dialog(IRCClient * client, Verification * verification);
     IRCClient * client;
+    Verification * verification;
 
 private:
     int messageCount;
