@@ -171,8 +171,7 @@ void Verification::createMenu(){
 void Verification::loginAction(){
 //login action user clien tot talk to server
     //construct dialog here?
-    QLineEdit * test;
-    test->text().toStdString().c_str();
+
     char * username = (char *) usernameText->text().toStdString().c_str();
     char * password = (char *) passwordText->text().toStdString().c_str();
     printf("user is %s\npass is %s\n", username, password);
