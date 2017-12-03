@@ -135,6 +135,7 @@ public:
 
 private:
     void createMenu();
+    void printUsage();
 private slots:
     void loginAction();
     void newUserAction();

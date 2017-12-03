@@ -74,7 +74,7 @@ IRCClient::IRCClient(){
     this->host = (char *) "";
     this->port = 0;
     this->username = (char *) "";
-    this->password = (char *)"";
+    this->password = (char *) "";
 
 }
 
@@ -157,6 +157,10 @@ int IRCClient::sendCommand(char *  host, int port, char * command, char * respon
 }
 //end of IRC CLIENT class
 //slots of verification class
+void Verification::printUsage(){
+    printf("Usage: client host port\n");
+    exit(1);
+}
 void Verification::createMenu(){
     QMenuBar * menuBar = new QMenuBar;
     QMenu * fileMenu = new QMenu(tr("&File"), this);
@@ -174,6 +178,9 @@ void Verification::newUserAction(){
 
 }
 Verification::Verification(int argc, char *argv[]){
+    if (argc != 3) printUsage();
+
+
 
 }
 
