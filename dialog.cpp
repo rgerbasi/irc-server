@@ -182,7 +182,8 @@ void Verification::loginAction(){
     command.append(password);
     char * response = new char[MAX_RESPONSE];
     //sending command ot server to check log in
-    client->sendCommand(client->host,client->port,(char *)command.c_str(), response)
+    client->sendCommand(client->host,client->port,(char *)command.c_str(), response);
+
 
 }
 void Verification::newUserAction(){
