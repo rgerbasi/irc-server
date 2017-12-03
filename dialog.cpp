@@ -187,15 +187,26 @@ void Verification::loginAction(){
 
     char * username = strdup((char *) usernameText->text().toStdString().c_str());
     char * password = strdup((char *) passwordText->text().toStdString().c_str());
-    printf("User is %s\npass is %s\n", username, password);
+    //printf("User is %s\npass is %s\n", username, password);
     std::string command = "LOG-IN";
     command = command + " " + username + " " + password;
     char * response = new char[MAX_RESPONSE];
-    printf("command is %s\n", command.c_str());
+    //printf("command is %s\n", command.c_str());
     //sending command ot server to check log in
     client->sendCommand(client->host,client->port,(char *)command.c_str(), response);
-    printf("respone is %s\n", response);
-
+    //printf("respone is %s\n", response);
+    if(!strcmp(response, "OK\r\n")){
+        QMessageBox msgbox;
+        msgbox.setText("Welcome Sister.");
+        msgbox.exec();
+        Dialog dialog;
+        dialog.show();
+        dialog.exec();
+    } else {
+        QMessageBox msgbox;
+        msgbox.setText("Log in error.");
+        msgBox.exec();
+    }
 }
 void Verification::newUserAction(){
 //new user actoin use clien tto talk to server
