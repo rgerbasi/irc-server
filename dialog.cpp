@@ -122,7 +122,7 @@ int IRCClient::open_client_socket(char * host, int port){
     }
 
     // Connect the socket to the specified server
-    printf("before connecting socket\n");
+   // printf("before connecting socket\n");
     if (connect(sock, (struct sockaddr *)&socketAddress,
             sizeof(socketAddress)) < 0) {
         printf("error from connect\n");
@@ -138,7 +138,7 @@ int IRCClient::sendCommand(char *  host, int port, char * command, char * respon
     //send command
     printf("SEND COMMAND TO SERVER HOST=%s port=%d command=%s\n",host, port, command);
     int sock = open_client_socket( host, port);
-    printf("after openclient socket\n");
+    //printf("after openclient socket\n");
     if (sock<0) {
         return 0;
     }
