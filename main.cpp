@@ -108,68 +108,7 @@
 class IRCClient;
 
 //addition number2 class to check user and password
-class Verification : public QDialog{
-public:
-    //constructor
-    Verification(int argc, char * argv[]){
 
-        //USER VERIFICATION HAPPENS HERE
-        createMenu();
-        QVBoxLayout * mainLayout = new QVBoxLayout;
-        QHBoxLayout * loginLayout = new QHBoxLayout();
-
-        QVBoxLayout * userBox = new QVBoxLayout();
-        QLabel * usernameLabel = new QLabel("Username:");
-        QLineEdit * usernameText = new QLineEdit;
-        userBox->addWidget(usernameLabel);
-        userBox->addWidget(usernameText);
-
-        QVBoxLayout * passwordBox = new QVBoxLayout();
-        QLabel * passwordLabel = new QLabel("Password: ");
-        QLineEdit * passwordText = new QLineEdit;
-        passwordBox->addWidget(passwordLabel);
-        passwordBox->addWidget(passwordText);
-
-        loginLayout->addLayout(userBox);
-        loginLayout->addLayout(passwordBox);
-
-        QHBoxLayout *layoutButtons = new QHBoxLayout;
-        QPushButton * logInButton = new QPushButton("Log In");
-        QPushButton * addnewUser = new QPushButton("New User");
-        layoutButtons->addWidget(addnewUser);
-        layoutButtons->addWidget(logInButton);
-
-        mainLayout->addLayout(loginLayout);
-        mainLayout->addLayout(layoutButtons);
-
-        printf("Verification setlayout manlayout\n");
-
-        setLayout(mainLayout);
-
-        //client and verification steps
-        //IRCClient * client = new IRCClient(argc, argv);
-        connect(logInButton, SIGNAL (released()), this, (logInAction()));
-
-    }
-
-    void logInAction(){
-        printf("log in action\n");
-        //heres where we do the thing;
-        //  printf("user : %s\npass: %s\n", username, password);
-
-        //*success = 1;
-
-    }
-
-    void createMenu(){
-        QMenuBar * menuBar = new QMenuBar;
-        QMenu * fileMenu = new QMenu(tr("&File"), this);
-        QAction * exitAction = fileMenu->addAction(tr("E&xit"));
-        menuBar->addMenu(fileMenu);
-
-        connect(exitAction, SIGNAL(triggered()), this, SLOT(accept()));
-    }
-};
 
 //end of verification class
 

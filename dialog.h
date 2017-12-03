@@ -115,14 +115,37 @@ class QTextEdit;
 class QListWidget;
 
 //my addition
-class IRCClient;
-//class Verification;
+class IRCClient{
+  public:
+    char * host;
+    char * port;
+    char * username;
+    char * password;
+    IRCClient();
+    int open_client_socket(char * host, int port);
+    int sendCommand(char *  host, int port, char * command, char * response);
+
+
+};
+class Verification : public QDialog{
+    Q_OBJECT
+public:
+    Verification(int argc, char * argv[]);
+    IRCClient * client;
+
+private:
+    createMenu();
+private slots:
+    void loginAction();
+    void newUserAction();
+};
+// end of class Verification;
 
 class Dialog : public QDialog
 {
     Q_OBJECT
 public:
-    Dialog(char * argv[], char * username, char * password);
+    Dialog(IRCClient * client);
     IRCClient * client;
 
 private:

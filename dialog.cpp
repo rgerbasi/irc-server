@@ -68,119 +68,45 @@
 #include <stdlib.h>
 
 #define MAX_RESPONSE (10 * 1024)
+IRCClient::IRCClient(){
+    //constructor
+    this->host = "";
+    this->port = "";
+    this->username = "";
+    this->password = "";
 
-int open_client_socket(char * host, int port) {
-    // Initialize socket address structure
-    struct  sockaddr_in socketAddress;
-
-    // Clear sockaddr structure
-    memset((char *)&socketAddress,0,sizeof(socketAddress));
-
-    // Set family to Internet
-    socketAddress.sin_family = AF_INET;
-
-    // Set port
-    socketAddress.sin_port = htons((u_short)port);
-
-    // Get host table entry for this host
-    struct  hostent  *ptrh = gethostbyname(host);
-    if ( ptrh == NULL ) {
-        perror("gethostbyname");
-        exit(1);
-    }
-
-    // Copy the host ip address to socket address structure
-    memcpy(&socketAddress.sin_addr, ptrh->h_addr, ptrh->h_length);
-
-    // Get TCP transport protocol entry
-    struct  protoent *ptrp = getprotobyname("tcp");
-    if ( ptrp == NULL ) {
-        perror("getprotobyname");
-        exit(1);
-    }
-
-    // Create a tcp socket
-    int sock;
-    sock = socket(PF_INET, SOCK_STREAM, ptrp->p_proto);
-    if (sock < 0) {
-        perror("socket");
-        exit(1);
-    }
-
-    // Connect the socket to the specified server
-    if (connect(sock, (struct sockaddr *)&socketAddress,
-            sizeof(socketAddress)) < 0) {
-        perror("connect");
-        exit(1);
-    }
-
-//	printf("AAH");
-    return sock;
 }
 
-class IRCClient{
-private:
-    int argc;
-    char * argv[];
-public:
-    char * user;
-    char * password;
-    char * host;
-    char * sport;
-    int port;
-    int socket;
+int IRCClient::open_client_socket(char * host, int port){
+    //open client socket
+
+}
+int IRCClient::sendCommand(char *  host, int port, char * command, char * response){
+    //send command
+}
+//end of IRC CLIENT class
+//slots of verification class
+void Verification::createMenu(){
+    QMenuBar * menuBar = new QMenuBar;
+    QMenu * fileMenu = new QMenu(tr("&File"), this);
+    QAction * exitAction = fileMenu->addAction(tr("E&xit"));
+    menuBar->addMenu(fileMenu);
+    connect(exitAction, SIGNAL(triggered()), this, SLOT(accept()));
+}
+void Verification::loginAction(){
+//login action user clien tot talk to server
 
 
-    IRCClient(int argc, char * argv[]){
-        //constructor
-        //parsing all of argv and doing stuff woo
-        if(argc != 3) printUsage();
-        this->host = argv[1];
-        this->port = atoi(argv[2]);
-      // this->user = argv[3];
-        //this->password = argv[4];
-        //this->socket = open_client_socket(this->host,this->port)
-    }
+}
+void Verification::newUserAction(){
+//new user actoin use clien tto talk to server
 
-    int sendCommand(char *  host, int port, char * command, char * response) {
+}
+Verification::Verification(int argc, char *argv[]){
 
-        int sock = open_client_socket( host, port);
-
-        if (sock<0) {
-            return 0;
-        }
-
-        // Send command
-        write(sock, command, strlen(command));
-        write(sock, "\r\n",2);
-
-        //Print copy to stdout
-        write(1, command, strlen(command));
-        write(1, "\r\n",2);
-
-        // Keep reading until connection is closed or MAX_REPONSE
-        int n = 0;
-        int len = 0;
-        while ((n=read(sock, response+len, MAX_RESPONSE - len))>0) {
-            len += n;
-        }
-        response[len]=0;
-
-        printf("response:\n%s\n", response);
-
-        close(sock);
-
-        return 1;
-    }
-
-    void printUsage(){
-        printf("Usage: client host port\n");
-        exit(1);
-    }
+}
 
 
-
-};
 
 //reminder : command is one string but it will contain all the arguements for commands
 //host: 120.10.12.218
@@ -213,7 +139,7 @@ void Dialog::timerAction()
     allMessages->append(message);
 }
 
-Dialog::Dialog(char * argv[], char * username, char * password)
+Dialog::Dialog(IRCClient * client)
 {
     createMenu();
     //
