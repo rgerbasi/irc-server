@@ -187,11 +187,8 @@ Verification::Verification(int argc, char *argv[]){
     client = new IRCClient();
     client->host = host;
     client->port = port;
+   //building gui
     createMenu();
-
-    QVBoxLayout * mainLayout = new QVBoxLayout;
-
-
     QVBoxLayout * mainLayout = new QVBoxLayout;
     QHBoxLayout * loginLayout = new QHBoxLayout();
     QVBoxLayout * userBox = new QVBoxLayout();
