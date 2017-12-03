@@ -175,12 +175,13 @@ void Verification::loginAction(){
 
     char * username = (char *) usernameText->text().toStdString().c_str();
     char * password = (char *) passwordText->text().toStdString().c_str();
-    printf("User is %s\npass is %s\n", username, password);
+    //printf("User is %s\npass is %s\n", username, password);
     std::string command = "LOG-IN ";
     command.append(username);
     command.append(" ");
     command.append(password);
     char * response = new char[MAX_RESPONSE];
+    printf("command is %s\n", command.c_str());
     //sending command ot server to check log in
     client->sendCommand(client->host,client->port,(char *)command.c_str(), response);
 
