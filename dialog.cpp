@@ -78,9 +78,10 @@ IRCClient::IRCClient(){
 
 }
 
-int open_client_socket(char * host, int port){
+int IRCClient::open_client_socket(char * host, int port){
     //open client socket
     // Initialize socket address structure
+    printf("open client socket\n");
     struct  sockaddr_in socketAddress;
 
     // Clear sockaddr structure
@@ -122,9 +123,11 @@ int open_client_socket(char * host, int port){
         perror("connect");
         exit(1);
     }
-    return sock;
-}
 
+    printf("AAH");
+    return sock;
+
+}
 int IRCClient::sendCommand(char *  host, int port, char * command, char * response){
     //send command
     printf("SEND COMMAND TO SERVER HOST=%s port=%d command=%s\n",host, port, command);

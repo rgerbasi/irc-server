@@ -122,7 +122,7 @@ class IRCClient{
     char * username;
     char * password;
     IRCClient();
-
+    int open_client_socket(char * host, int port);
     int sendCommand(char *  host, int port, char * command, char * response);
 
 
