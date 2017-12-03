@@ -81,7 +81,7 @@ IRCClient::IRCClient(){
 int IRCClient::open_client_socket(char * host, int port){
     //open client socket
     // Initialize socket address structure
-    printf("open client socket\n");
+    printf("in open client socket\n");
     struct  sockaddr_in socketAddress;
 
     // Clear sockaddr structure
@@ -93,6 +93,7 @@ int IRCClient::open_client_socket(char * host, int port){
     // Set port
     socketAddress.sin_port = htons((u_short)port);
 
+      printf("before getting table netry for host\n");
     // Get host table entry for this host
     struct  hostent  *ptrh = gethostbyname(host);
     if ( ptrh == NULL ) {
@@ -104,6 +105,7 @@ int IRCClient::open_client_socket(char * host, int port){
     memcpy(&socketAddress.sin_addr, ptrh->h_addr, ptrh->h_length);
 
     // Get TCP transport protocol entry
+      printf("before getting tcp transport protocol entry\n");
     struct  protoent *ptrp = getprotobyname("tcp");
     if ( ptrp == NULL ) {
         perror("getprotobyname");
@@ -111,6 +113,7 @@ int IRCClient::open_client_socket(char * host, int port){
     }
 
     // Create a tcp socket
+    printf("before creating tcp socket\n");
     int sock = socket(PF_INET, SOCK_STREAM, ptrp->p_proto);
     if (sock < 0) {
         perror("socket");
@@ -118,6 +121,7 @@ int IRCClient::open_client_socket(char * host, int port){
     }
 
     // Connect the socket to the specified server
+    printf("before connecting socket\n");
     if (connect(sock, (struct sockaddr *)&socketAddress,
             sizeof(socketAddress)) < 0) {
         perror("connect");
