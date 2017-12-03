@@ -118,7 +118,7 @@ class QListWidget;
 class IRCClient{
   public:
     char * host;
-    char * port;
+    int port;
     char * username;
     char * password;
     IRCClient();

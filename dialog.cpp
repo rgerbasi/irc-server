@@ -71,10 +71,10 @@
 //IRCClient
 IRCClient::IRCClient(){
     //constructor
-    this->host = "";
-    this->port = "";
-    this->username = "";
-    this->password = "";
+    this->host = (char *) "";
+    this->port = 0;
+    this->username = (char *) "";
+    this->password = (char *)"";
 
 }
 
