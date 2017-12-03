@@ -182,7 +182,7 @@ void Verification::loginAction(){
     printf("command is %s\n", command.c_str());
     //sending command ot server to check log in
     client->sendCommand(client->host,client->port,(char *)command.c_str(), response);
-
+    printf("respone is %s\n", response);
 
 }
 void Verification::newUserAction(){
