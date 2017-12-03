@@ -128,6 +128,7 @@ int IRCClient::sendCommand(char *  host, int port, char * command, char * respon
     //send command
     printf("SEND COMMAND TO SERVER HOST=%s port=%d command=%s\n",host, port, command);
     int sock = open_client_socket( host, port);
+    printf("after openclient socket\n");
     if (sock<0) {
         return 0;
     }
