@@ -180,6 +180,43 @@ void Verification::newUserAction(){
 Verification::Verification(int argc, char *argv[]){
     if (argc != 3) printUsage();
 
+    char * host = argv[1];
+    int port = atoi(argv[2]);
+
+       //build client
+    client = new IRCClient();
+    client->host = host;
+    client->port = port;
+    createMenu();
+
+    QVBoxLayout * mainLayout = new QVBoxLayout;
+
+
+    QVBoxLayout * mainLayout = new QVBoxLayout;
+    QHBoxLayout * loginLayout = new QHBoxLayout();
+    QVBoxLayout * userBox = new QVBoxLayout();
+    QLabel * usernameLabel = new QLabel("Username:");
+    QLineEdit * usernameText = new QLineEdit;
+    userBox->addWidget(usernameLabel);
+    userBox->addWidget(usernameText);
+    QVBoxLayout * passwordBox = new QVBoxLayout();
+    QLabel * passwordLabel = new QLabel("Password: ");
+    QLineEdit * passwordText = new QLineEdit;
+    passwordBox->addWidget(passwordLabel);
+    passwordBox->addWidget(passwordText);
+    loginLayout->addLayout(userBox);
+    loginLayout->addLayout(passwordBox);
+    QHBoxLayout *layoutButtons = new QHBoxLayout;
+    QPushButton * logInButton = new QPushButton("Log In");
+    QPushButton * addnewUser = new QPushButton("New User");
+    layoutButtons->addWidget(addnewUser);
+    layoutButtons->addWidget(logInButton);
+    mainLayout->addLayout(loginLayout);
+    mainLayout->addLayout(layoutButtons);
+    setLayout(mainLayout);
+
+    connect(logInButton, SIGNAL (released()), this, SLOT (loginAction()));
+    connect(addnewUser, SIGNAL (released()), this, SLOT (newUserAction()));
 
 
 }
