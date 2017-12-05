@@ -205,8 +205,9 @@ void Verification::loginAction(){
         printf("before username and dialog constructor\n");
         client->username = username;
         client->password = password;
+
         Dialog dialog(client,this);
-        printf("before dialog show\n");
+        //printf("before dialog show\n");
         this->hide();
         dialog.show();
         dialog.exec();
@@ -283,7 +284,19 @@ void Dialog::initialize(){
     std::string initializeCommand = "GET-ALL-USERS admin admin";
     char * userListString = new char[MAX_RESPONSE];
     client->sendCommand(client->host, client->port,(char *) initializeCommand.c_str(), userListString);
-    printf("%s\n", userListString);
+    //printf("%s\n", userListString);
+    char * usernum = new char[MAX_RESPONSE];
+    client->sendCommand(client->host, client->port, "GET-NUMBER-OF-USERS", usernum);
+    //got the user number
+    std::string usrlist(userListString);
+    std::stringsteam(usrlist);
+    std::string temp;
+    while(ss>>temp){
+        printf("temp is %s\n", temp.c_str());
+    }
+
+
+
 
 }
 
