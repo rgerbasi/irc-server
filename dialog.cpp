@@ -226,7 +226,15 @@ void Verification::loginAction(){
             usernameText->clear();
             passwordText->clear();
         }
+    } else {
+        //empty fields print error
+        QMessageBox msgbox;
+        msgbox.setText("One or more empty fields.");
+        msgbox.exec();
+
     }
+
+
 }
 void Verification::newUserAction(){
 //new user actoin use clien tto talk to server
@@ -246,6 +254,11 @@ void Verification::newUserAction(){
             msgbox.setText("New Sister added.");
             msgbox.exec();
         }
+    } else {
+        //empty fields
+        QMessageBox msgbox;
+        msgbox.setText("One or more empty fields.");
+        msgbox.exec();
     }
 }
 Verification::Verification(int argc, char *argv[]){
