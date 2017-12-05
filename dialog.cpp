@@ -197,6 +197,7 @@ void Verification::loginAction(){
 
     client->sendCommand(client->host,client->port,(char *)command.c_str(), response);
     //printf("respone is %s\n", response);
+
     if(!strcmp(response, "OK\r\n")){
         QMessageBox msgbox;
         msgbox.setText("Welcome Sister.");
@@ -207,7 +208,7 @@ void Verification::loginAction(){
         Dialog dialog(client,this);
         printf("before dialog show\n");
         dialog.show();
-        //dialog.exec();
+        dialog.exec();
 
         } else {
         QMessageBox msgbox;
