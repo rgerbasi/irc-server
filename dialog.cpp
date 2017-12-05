@@ -235,6 +235,8 @@ void Verification::newUserAction(){
     QString passwor = strdup(passwordText->text();
 
     if(!usernam.isEmpty() && !passwor.isEmpty()) {
+            char * username = strdup((char *) usernameText->text().toStdString().c_str());
+            char * password = strdup((char *) passwordText->text().toStdString().c_str());
         std::string command = "ADD-USER";
         command = command + " " + username + " " + password;
         char * response = new char[MAX_RESPONSE];
