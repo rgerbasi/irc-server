@@ -187,6 +187,11 @@ void Verification::loginAction(){
     //construct dialog here?
    //LineEdit*test;
 
+    QString usernam = (usernameText->text());
+    QString passwor = (passwordText->text());
+
+    if(!(usernam.isEmpty()) && !(passwor.isEmpty())){
+
     char * username = strdup((char *) usernameText->text().toStdString().c_str());
     char * password = strdup((char *) passwordText->text().toStdString().c_str());
     //printf("User is %s\npass is %s\n", username, password);
@@ -220,22 +225,25 @@ void Verification::loginAction(){
         usernameText->clear();
         passwordText->clear();
     }
+
+    }
 }
 void Verification::newUserAction(){
 //new user actoin use clien tto talk to server
 
-    QString username = (usernameText->text());
-    QString password = (passwordText->text());
+    QString usernam= (usernameText->text());
+    QString passwor= (passwordText->text());
 
-    if(!(username.isEmpty()) && !(password.isEmpty())){}
-    std::string command = "ADD-USER";
-    command = command + " " + username.toStdString() + " " + password.toStdString();
-    //char * response = new char[MAX_RESPONSE];
-    client->sendCommand(client->host,client->port,(char *)command.c_str(), client->response);
-    if(!strcmp(client->response, "OK\r\n")){
-        QMessageBox msgbox;
-        msgbox.setText("New Sister added.");
-        msgbox.exec();
+    if(!(usernam.isEmpty()) && !(passwor.isEmpty())){
+       std::string command = "ADD-USER";
+        command = command + " " + username.toStdString() + " " + password.toStdString();
+        //char * response = new char[MAX_RESPONSE];
+        client->sendCommand(client->host,client->port,(char *)command.c_str(), client->response);
+        if(!strcmp(client->response, "OK\r\n")){
+            QMessageBox msgbox;
+            msgbox.setText("New Sister added.");
+            msgbox.exec();
+         }
     }
 }
 Verification::Verification(int argc, char *argv[]){
