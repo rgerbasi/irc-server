@@ -347,8 +347,8 @@ void Dialog::createRoomAction(){
         command = command + client->username + " " + client->password +" " +room.toStdString();
         char * response = new char[MAX_RESPONSE];
         client->sendCommand(client->host,client->port, (char *) command.c_str(), response);
-        printf("%s\n", response);
-
+        //add it to the room list
+        roomsList->addItem(room.toStdString().c_str());
     }
 
 }
