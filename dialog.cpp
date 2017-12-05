@@ -279,9 +279,15 @@ void Dialog::sendAction()
     //client->sendCommand(client->host, client->port)
 
 }
-void Dialog::enterRoomAction(){
+void Dialog::createRoomAction(){
 
-    printf("enter room button");
+    printf("create room button");
+    QString room = QInputDialog::getText(this, tr("QInputDialog::getText()"), tr("Room name:"), QLineEdit::Normal, QDir::home().dirName(), &ok);
+    if(ok && !text.isEmpty()){
+        //if user clicked ok and text isnt empty we will create a room
+        printf("WOO\n");
+
+    }
 
 }
 void Dialog::newUserAction()
@@ -363,7 +369,7 @@ Dialog::Dialog(IRCClient * client, Verification * verification)
 
     // Setup actions for buttons
     connect(sendButton, SIGNAL (released()), this, SLOT (sendAction()));
-    connect(enterRoomButton, SIGNAL (released()), this, SLOT (enterRoomAction()));
+    connect(createRoomButton, SIGNAL (released()), this, SLOT (createRoomAction()));
 
     // Add all widgets to window
     mainLayout->addLayout(layoutRoomsUsers);
