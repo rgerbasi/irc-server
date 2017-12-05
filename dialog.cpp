@@ -287,14 +287,12 @@ void Dialog::initialize(){
     char * userListString = new char[MAX_RESPONSE];
     client->sendCommand(client->host, client->port,(char *) initializeCommand.c_str(), userListString);
     //printf("%s\n", userListString);
-    char * usernum = new char[MAX_RESPONSE];
-    client->sendCommand(client->host, client->port, "GET-NUMBER-OF-USERS", usernum);
     //got the user number
-    std::string usrlist(userListString);
     std::stringstream ss(userListString);
     std::string temp;
     while(ss>>temp){
         printf("temp is %s\n", temp.c_str());
+        usersList->addItem(temp);
     }
 
 
