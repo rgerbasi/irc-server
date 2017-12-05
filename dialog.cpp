@@ -188,8 +188,8 @@ void Verification::loginAction(){
    //LineEdit*test;
 
 
-    QString usernam = strdup(usernameText->text());
-    QString passwor = strdup(passwordText->text();
+    QString usernam = usernameText->text();
+    QString passwor = passwordText->text();
 
     if(!usernam.isEmpty() && !passwor.isEmpty()) {
         char * username = strdup((char *) usernameText->text().toStdString().c_str());
@@ -231,8 +231,8 @@ void Verification::loginAction(){
 void Verification::newUserAction(){
 //new user actoin use clien tto talk to server
 
-    QString usernam = strdup(usernameText->text());
-    QString passwor = strdup(passwordText->text();
+    QString usernam = usernameText->text();
+    QString passwor = passwordText->text();
 
     if(!usernam.isEmpty() && !passwor.isEmpty()) {
             char * username = strdup((char *) usernameText->text().toStdString().c_str());
