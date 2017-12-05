@@ -442,7 +442,7 @@ Dialog::Dialog(IRCClient * client, Verification * verification)
     connect(sendButton, SIGNAL (released()), this, SLOT (sendAction()));
     connect(createRoomButton, SIGNAL (released()), this, SLOT (createRoomAction()));
 
-    connect(roomsList,roomsList->itemClicked(QListWidgetItem * item), this, SLOT(selectRoomAction(QListWidgetItem*item));
+    connect(roomsList,roomsList->itemClicked(QListWidgetItem *), this, SLOT(selectRoomAction(QListWidgetItem*item)));
 
     // Add all widgets to window
     mainLayout->addLayout(layoutRoomsUsers);
