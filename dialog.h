@@ -113,6 +113,7 @@ class QMenuBar;
 class QPushButton;
 class QTextEdit;
 class QListWidget;
+class QListWidgetItem;
 
 //my addition
 class IRCClient{
