@@ -116,7 +116,7 @@ int Verification::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 struct qt_meta_stringdata_Dialog_t {
     QByteArrayData data[6];
-    char stringdata0[61];
+    char stringdata0[62];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -129,12 +129,12 @@ QT_MOC_LITERAL(0, 0, 6), // "Dialog"
 QT_MOC_LITERAL(1, 7, 10), // "sendAction"
 QT_MOC_LITERAL(2, 18, 0), // ""
 QT_MOC_LITERAL(3, 19, 13), // "newUserAction"
-QT_MOC_LITERAL(4, 33, 15), // "enterRoomAction"
-QT_MOC_LITERAL(5, 49, 11) // "timerAction"
+QT_MOC_LITERAL(4, 33, 16), // "createRoomAction"
+QT_MOC_LITERAL(5, 50, 11) // "timerAction"
 
     },
     "Dialog\0sendAction\0\0newUserAction\0"
-    "enterRoomAction\0timerAction"
+    "createRoomAction\0timerAction"
 };
 #undef QT_MOC_LITERAL
 
@@ -174,7 +174,7 @@ void Dialog::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         switch (_id) {
         case 0: _t->sendAction(); break;
         case 1: _t->newUserAction(); break;
-        case 2: _t->enterRoomAction(); break;
+        case 2: _t->createRoomAction(); break;
         case 3: _t->timerAction(); break;
         default: ;
         }

@@ -204,11 +204,8 @@ void Verification::loginAction(){
         client->username = username;
         client->password = password;
         Dialog dialog(client,this);
-
-
         dialog.show();
-
-        dialog.exec();
+        //dialog.exec();
 
         } else {
         QMessageBox msgbox;
