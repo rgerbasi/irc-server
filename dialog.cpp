@@ -290,9 +290,14 @@ void Dialog::initialize(){
     //got the user number
     std::stringstream ss(userListString);
     std::string temp;
+    std::string usermessage = " has entered the room.";
+    std::string mess;
     while(ss>>temp){
         printf("temp is %s\n", temp.c_str());
         usersList->addItem(temp.c_str());
+        mess = temp + usermessage;
+        allMessages->append(mess.c_str());
+
     }
 
 
@@ -415,7 +420,7 @@ Dialog::Dialog(IRCClient * client, Verification * verification)
     }
     */
     //since our default room is lobby we're going to add it to the room list
-    roomsList->addItem("Lobby");
+    roomsList->addItem("lobby");
 
     // Populate users
     /*
