@@ -156,6 +156,9 @@ public:
 private:
     int messageCount;
 
+    //addition
+    void initialize();
+
     void createMenu();
     void createHorizontalGroupBox();
     void createGridGroupBox();

@@ -207,6 +207,7 @@ void Verification::loginAction(){
         client->password = password;
         Dialog dialog(client,this);
         printf("before dialog show\n");
+        this->hide();
         dialog.show();
         dialog.exec();
 
@@ -272,6 +273,12 @@ Verification::Verification(int argc, char *argv[]){
 }
 //reminder : command is one string but it will contain all the arguements for commands
 //host: 120.10.12.218
+void Dialog::initialize(){
+    //here we will add existing users to the current users list and stuff :^)
+    printf("INITIALIZE");
+
+}
+
 void Dialog::sendAction()
 {    
      printf("Send Button\n");
@@ -379,18 +386,26 @@ Dialog::Dialog(IRCClient * client, Verification * verification)
     mainLayout->addLayout(layoutButtons);
 
     // Populate rooms
+    /*
     for (int i = 0; i < 20; i++) {
         char s[50];
         sprintf(s,"Room %d", i);
         roomsList->addItem(s);
     }
+    */
+    //since our default room is lobby we're going to add it to the room list
+    roomsList->addItem("Lobby");
 
     // Populate users
-    for (int i = 0; i < 20; i++) {
+    /*
+     * for (int i = 0; i < 20; i++) {
         char s[50];
         sprintf(s,"User %d", i);
         usersList->addItem(s);
     }
+    */
+    //adding the users that are already in the server and the room lobby
+    initialize();
 
     for (int i = 0; i < 20; i++) {
         char s[50];
