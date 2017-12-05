@@ -187,24 +187,20 @@ void Verification::loginAction(){
     //construct dialog here?
    //LineEdit*test;
 
-    QString usernam = (usernameText->text());
-    QString passwor = (passwordText->text());
-
-    if(!(usernam.isEmpty()) && !(passwor.isEmpty())){
-
     char * username = strdup((char *) usernameText->text().toStdString().c_str());
     char * password = strdup((char *) passwordText->text().toStdString().c_str());
     //printf("User is %s\npass is %s\n", username, password);
     std::string command = "LOG-IN";
     command = command + " " + username + " " + password;
-    //char * response = new char[MAX_RESPONSE];
+    char * response = new char[MAX_RESPONSE];
     //printf("command is %s\n", command.c_str());
     //sending command ot server to check log in
 
-    client->sendCommand(client->host,client->port,(char *)command.c_str(), client->response);
+
+    client->sendCommand(client->host,client->port,(char *)command.c_str(), response);
     //printf("respone is %s\n", response);
 
-    if(!strcmp(client->response, "OK\r\n")){
+    if(!strcmp(response, "OK\r\n")){
         QMessageBox msgbox;
         msgbox.setText("Welcome Sister.");
         msgbox.exec();
@@ -225,28 +221,21 @@ void Verification::loginAction(){
         usernameText->clear();
         passwordText->clear();
     }
-
-    }
 }
 void Verification::newUserAction(){
 //new user actoin use clien tto talk to server
 
-    QString usernam= (usernameText->text());
-    QString passwor= (passwordText->text());
+    QString username = strdup(usernameText->text());
+    QString password = strdup(passwordText->text();
 
-    if(!(usernam.isEmpty()) && !(passwor.isEmpty())){
-
-        char * username = strdup((char *) usernameText->text().toStdString().c_str());
-        char * password = strdup((char *) passwordText->text().toStdString().c_str());
-       std::string command = "ADD-USER";
-        command = command + " " + username + " " + password;
-        //char * response = new char[MAX_RESPONSE];
-        client->sendCommand(client->host,client->port,(char *)command.c_str(), client->response);
-        if(!strcmp(client->response, "OK\r\n")){
-            QMessageBox msgbox;
-            msgbox.setText("New Sister added.");
-            msgbox.exec();
-         }
+    std::string command = "ADD-USER";
+    command = command + " " + username + " " + password;
+    char * response = new char[MAX_RESPONSE];
+    client->sendCommand(client->host,client->port,(char *)command.c_str(), response);
+    if(!strcmp(response, "OK\r\n")){
+        QMessageBox msgbox;
+        msgbox.setText("New Sister added.");
+        msgbox.exec();
     }
 }
 Verification::Verification(int argc, char *argv[]){
