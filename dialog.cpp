@@ -362,7 +362,7 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
     std::string leavecommand = "LEAVE-ROOM ";
     char * response = new char[MAX_RESPONSE];
     leavecommand = leavecommand + client->username + " " + client->password + " " + client->curRoom;
-    client->sendCommand(client->host, client->port, (char *) leavecommand.c_str(), leaveresponse );
+    client->sendCommand(client->host, client->port, (char *) leavecommand.c_str(), response );
     //user left the room now time to add it to a room
     char * room = (char *) item->text().toStdString().c_str();
     client->curRoom = room;
