@@ -344,7 +344,7 @@ void Dialog::createRoomAction(){
     if(ok && !room.isEmpty()){
         //if user clicked ok and text isnt empty we will create a room
         std::string command = "CREATE-ROOM ";
-        command = command + client->username + " " + client->password;
+        command = command + client->username + " " + client->password + room.toStdString();
         char * response = new char[MAX_RESPONSE];
         client->sendCommand(client->host,client->port, (char *) command.c_str(), response);
         printf("%s\n", response);
