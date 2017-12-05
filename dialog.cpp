@@ -370,9 +370,9 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
         usersList->addItem(user.c_str());
     }
     char * messagelistresponse = new char[MAX_RESPONSE];
-/*
     std::string command2 = "GET-MESSAGES "
-    std::stringstream ss2(
+    std::stringstream ss2(messagelistresponse);
+
 
 
 
@@ -380,7 +380,6 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
     //client->sendCommand()
 
     char * messagelistresponse = new char[MAX_RESPONSE];
-*/
 
 }
 void Dialog::newUserAction()
