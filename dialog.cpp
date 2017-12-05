@@ -366,7 +366,7 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
     char * room = (char *) item->text().toStdString().c_str();
     client->curRoom = room;
     std::string entercommand = "ENTER-ROOM ";
-    entercommand = entercommand + client->username + " " + client->port + " " + room;
+    entercommand = entercommand + client->username + " " + client->password + " " + room;
     client->sendCommand(client->host, client->port, (char *) entercommand.c_str() , response );
 
 
