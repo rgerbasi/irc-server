@@ -282,7 +282,7 @@ void Dialog::initialize(){
     //because im using admin i am assuming i will always get this response
     std::string initializeCommand = "GET-ALL-USERS admin admin";
     char * userListString = new char[MAX_RESPONSE];
-    client->sendCommand(client->host, client->port, initializeCommand.c_str(), userListString);
+    client->sendCommand(client->host, client->port,(char *) initializeCommand.c_str(), userListString);
     printf("%s\n", userListString);
 
 }
