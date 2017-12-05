@@ -363,8 +363,8 @@ Dialog::Dialog(IRCClient * client, Verification * verification)
     QHBoxLayout *layoutButtons = new QHBoxLayout;
     QPushButton * sendButton = new QPushButton("Send");
     //adition
-    QPushButton * enterRoomButton = new QPushButton("Enter Room");
-    layoutButtons->addWidget(enterRoomButton);
+    QPushButton * createRoomButton = new QPushButton("Create Room");
+    layoutButtons->addWidget(createRoomButton);
     layoutButtons->addWidget(sendButton);
 
     // Setup actions for buttons
