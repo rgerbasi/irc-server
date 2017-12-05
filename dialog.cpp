@@ -224,8 +224,8 @@ void Verification::loginAction(){
 void Verification::newUserAction(){
 //new user actoin use clien tto talk to server
 
-    QString username = strdup(usernameText->text());
-    QString password = strdup(passwordText->text());
+    QString username = (usernameText->text());
+    QString password = (passwordText->text());
 
     if(!(username.isEmpty()) && !(password.isEmpty())){}
     std::string command = "ADD-USER";
