@@ -340,11 +340,11 @@ void Dialog::createRoomAction(){
 
     printf("create room button");
     bool ok;
-    QString room = QInputDialog::getText(this, tr("QInputDialog::getText()"), tr("Room name:"), QLineEdit::Normal, QDir::home().dirName(), &ok);
+    QString room = QInputDialog::getText(this, tr("Create Room"), tr("Room name:"), QLineEdit::Normal, QDir::home().dirName(), &ok);
     if(ok && !room.isEmpty()){
         //if user clicked ok and text isnt empty we will create a room
         std::string command = "CREATE-ROOM ";
-        command = command + client->username + " " + client->password + room.toStdString();
+        command = command + client->username + " " + client->password +" " +room.toStdString();
         char * response = new char[MAX_RESPONSE];
         client->sendCommand(client->host,client->port, (char *) command.c_str(), response);
         printf("%s\n", response);
