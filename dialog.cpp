@@ -353,7 +353,7 @@ void Dialog::createRoomAction(){
 
 }
 void Dialog::selectRoomAction(){
-    print("SELECT ROOm\n");
+    printf("SELECT ROOm\n");
 
 
 }
