@@ -201,6 +201,7 @@ void Verification::loginAction(){
         QMessageBox msgbox;
         msgbox.setText("Welcome Sister.");
         msgbox.exec();
+        printf("before username and dialog constructor\n");
         client->username = username;
         client->password = password;
         Dialog dialog(client,this);
