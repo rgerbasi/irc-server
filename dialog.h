@@ -188,7 +188,7 @@ private slots:
     void newUserAction();
     void createRoomAction();
     void timerAction();
-    void selectRoomAction(QListWidgetItem * item);
+    void selectRoomAction(QListWidgetItem *);
 };
 
 
