@@ -369,10 +369,11 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
     entercommand = entercommand + client->username + " " + client->port + " " + room;
     client->sendCommand(client->host, client->port, (char *) entercommand.c_str() , response );
 
+
     //this is where you load the messages
     usersList->clear();
     printf("%s ITEM TEST \n", item->text().toStdString().c_str());
-    char * room = (char *) item->text().toStdString().c_str();
+    //char * room = (char *) item->text().toStdString().c_str();
     char * userlistresponse = new char[MAX_RESPONSE];
     std::string command1 = "GET-USERS-IN-ROOM ";
     command1 = command1 + client->username + " " + client->password + " " + room;
