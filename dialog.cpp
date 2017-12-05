@@ -352,6 +352,11 @@ void Dialog::createRoomAction(){
     }
 
 }
+void Dialog::selectRoomAction(){
+    print("SELECT ROOm\n");
+
+
+}
 void Dialog::newUserAction()
 {
     printf("New User Button\n");
@@ -432,6 +437,7 @@ Dialog::Dialog(IRCClient * client, Verification * verification)
     // Setup actions for buttons
     connect(sendButton, SIGNAL (released()), this, SLOT (sendAction()));
     connect(createRoomButton, SIGNAL (released()), this, SLOT (createRoomAction()));
+    connect(roomsList,SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(selectRoomAction()));
 
     // Add all widgets to window
     mainLayout->addLayout(layoutRoomsUsers);

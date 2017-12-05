@@ -187,7 +187,7 @@ private slots:
     void newUserAction();
     void createRoomAction();
     void timerAction();
-    
+    void selectRoomAction();
 };
 
 
