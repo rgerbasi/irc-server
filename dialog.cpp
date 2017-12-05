@@ -234,7 +234,6 @@ void Verification::loginAction(){
 
     }
 
-
 }
 void Verification::newUserAction(){
 //new user actoin use clien tto talk to server
@@ -318,13 +317,11 @@ void Dialog::initialize(){
     std::string usermessage = " has entered the room.";
     std::string mess;
     while(ss>>temp){
-        printf("temp is %s\n", temp.c_str());
+        //printf("temp is %s\n", temp.c_str());
         usersList->addItem(temp.c_str());
         mess = temp + usermessage;
         allMessages->append(mess.c_str());
-
     }
-
 
 
 
@@ -336,6 +333,8 @@ void Dialog::sendAction()
      //char response[MAX_RESPONSE];
     //client->sendCommand(client->host, client->port)
 
+
+
 }
 void Dialog::createRoomAction(){
 
@@ -344,7 +343,11 @@ void Dialog::createRoomAction(){
     QString room = QInputDialog::getText(this, tr("QInputDialog::getText()"), tr("Room name:"), QLineEdit::Normal, QDir::home().dirName(), &ok);
     if(ok && !room.isEmpty()){
         //if user clicked ok and text isnt empty we will create a room
-        printf("WOO\n");
+        std::string command = "CREATE-ROOM ";
+        command = command + client->username + " " + client->password;
+        char * response = new char[MAX_RESPONSE];
+        client->sendCommand(client->host,client->port, (char *) command.c_str(), response);
+        printf("%s\n", response);
 
     }
 
