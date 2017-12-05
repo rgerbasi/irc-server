@@ -323,7 +323,7 @@ void Dialog::initialize(){
         allMessages->append(mess.c_str());
     }
     //initialize user curRoom
-    client->curRoom = "lobby";
+    client->curRoom = (char *)"lobby";
 
 
 
@@ -332,9 +332,10 @@ void Dialog::initialize(){
 void Dialog::sendAction()
 {    
      printf("Send Button\n");
+     /*
     char * response = new char[MAX_RESPONSE];
     client->sendCommand(client->host, client->port)
-
+    */
 
 
 }
