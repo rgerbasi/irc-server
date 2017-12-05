@@ -115,8 +115,8 @@ int Verification::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     return _id;
 }
 struct qt_meta_stringdata_Dialog_t {
-    QByteArrayData data[9];
-    char stringdata0[101];
+    QByteArrayData data[8];
+    char stringdata0[96];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -132,14 +132,12 @@ QT_MOC_LITERAL(3, 19, 13), // "newUserAction"
 QT_MOC_LITERAL(4, 33, 16), // "createRoomAction"
 QT_MOC_LITERAL(5, 50, 11), // "timerAction"
 QT_MOC_LITERAL(6, 62, 16), // "selectRoomAction"
-QT_MOC_LITERAL(7, 79, 16), // "QListWidgetItem*"
-QT_MOC_LITERAL(8, 96, 4) // "item"
+QT_MOC_LITERAL(7, 79, 16) // "QListWidgetItem*"
 
     },
     "Dialog\0sendAction\0\0newUserAction\0"
     "createRoomAction\0timerAction\0"
-    "selectRoomAction\0QListWidgetItem*\0"
-    "item"
+    "selectRoomAction\0QListWidgetItem*"
 };
 #undef QT_MOC_LITERAL
 
@@ -168,7 +166,7 @@ static const uint qt_meta_data_Dialog[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void, 0x80000000 | 7,    2,
 
        0        // eod
 };

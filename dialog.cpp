@@ -353,12 +353,33 @@ void Dialog::createRoomAction(){
 
 }
 void Dialog::selectRoomAction(QListWidgetItem * item){
-    printf("SELECT ROOm\n");
+    //printf("SELECT ROOm\n");
+    //this is where you load the messages
     usersList->clear();
     printf("%s ITEM TEST \n", item->text().toStdString().c_str());
+    char * room = (char *) item->text().toStdString().c_str();
+    char * userlistresponse = new char[MAX_RESPONSE];
+    std::string command1 = "GET-USERS-IN-ROOM " + client->username +" "+ client->password + room;
+    client->sendCommand(client->host,client->port, (char *)command1.c_str(), userlistresponse);
+    //building user list
+    std::stringstream ss1(userlistresponse);
+    std::string user;
+    while(ss1>>user){
+        //printf("temp is %s\n", temp.c_str());
+        usersList->addItem(user.c_str());
+    }
+    char * messagelistresponse = new char[MAX_RESPONSE];
+/*
+    std::string command2 = "GET-MESSAGES "
+    std::stringstream ss2(
 
 
 
+
+    //client->sendCommand()
+
+    char * messagelistresponse = new char[MAX_RESPONSE];
+*/
 
 }
 void Dialog::newUserAction()
