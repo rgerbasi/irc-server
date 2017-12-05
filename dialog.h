@@ -123,6 +123,7 @@ class IRCClient{
     char * username;
     char * password;
     //char * response = new char[10*1024];
+    char * curRoom;
 
     IRCClient();
     int open_client_socket(char * host, int port);

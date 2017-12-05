@@ -322,6 +322,8 @@ void Dialog::initialize(){
         mess = temp + usermessage;
         allMessages->append(mess.c_str());
     }
+    //initialize user curRoom
+    client->curRoom = "lobby";
 
 
 
@@ -330,8 +332,8 @@ void Dialog::initialize(){
 void Dialog::sendAction()
 {    
      printf("Send Button\n");
-     //char response[MAX_RESPONSE];
-    //client->sendCommand(client->host, client->port)
+    char * response = new char[MAX_RESPONSE];
+    client->sendCommand(client->host, client->port)
 
 
 
@@ -354,6 +356,19 @@ void Dialog::createRoomAction(){
 }
 void Dialog::selectRoomAction(QListWidgetItem * item){
     //printf("SELECT ROOm\n");
+    //now user has to enter room
+    //leave previous room too
+    std::string leavecommand = "LEAVE-ROOM ";
+    char * response = new char[MAX_RESPONSE];
+    leavecommand = leavecommand + client->username + " " + client->password + " " + client->curRoom;
+    client->sendCommand(client->host, client->port, (char *) leavecommand.c_str(), leaveresponse );
+    //user left the room now time to add it to a room
+    char * room = (char *) item->text().toStdString().c_str();
+    client->curRoom = room;
+    std::string entercommand = "ENTER-ROOM ";
+    entercommand = entercommand + client->username + " " + client->port + " " + room;
+    client->sendCommand(client->host, client->port, (char *) entercommand.c_str() , response );
+
     //this is where you load the messages
     usersList->clear();
     printf("%s ITEM TEST \n", item->text().toStdString().c_str());
@@ -366,38 +381,30 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
     std::stringstream ss1(userlistresponse);
     std::string user;
     while(ss1>>user){
-        //printf("temp is %s\n", temp.c_str());
+
         usersList->addItem(user.c_str());
     }
     char * messagelistresponse = new char[MAX_RESPONSE];
-    std::string command2 = "GET-MESSAGES "
+    std::string command2 = "GET-MESSAGES ";
+    command2 = command2 + client->username + " " + client->password + " 0 " + room;
+    client->sendCommand(client->host,client->port, (char *)command2.c_str(), messagelistresponse);
+    //building messages
     std::stringstream ss2(messagelistresponse);
+    std::string message;
+    while(ss2>>message) {
+        allMessages->append(message.c_str());
+    }
+
+    //now user has to enter room
+    //leave previous room too
 
 
-
-
-
-    //client->sendCommand()
-
-    char * messagelistresponse = new char[MAX_RESPONSE];
 
 }
 void Dialog::newUserAction()
 {
     printf("New User Button\n");
-
-
-/*
-    std::string command = "ADD-USER";
-    command = command + " " + username + " " + password;
-    char * response = new char[MAX_RESPONSE];
-    client->sendCommand(client->host,client->port,(char *)command.c_str(), response);
-    if(!strcmp(response, "OK\r\n")){
-        QMessageBox msgbox;
-        msgbox.setText("New Sister added.");
-        msgbox.exec();
-    }
- */
+    //deprecated function probably not doing it sry
 }
 
 void Dialog::timerAction()
