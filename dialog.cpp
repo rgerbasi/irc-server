@@ -282,8 +282,9 @@ void Dialog::sendAction()
 void Dialog::createRoomAction(){
 
     printf("create room button");
+    bool ok;
     QString room = QInputDialog::getText(this, tr("QInputDialog::getText()"), tr("Room name:"), QLineEdit::Normal, QDir::home().dirName(), &ok);
-    if(ok && !text.isEmpty()){
+    if(ok && !room.isEmpty()){
         //if user clicked ok and text isnt empty we will create a room
         printf("WOO\n");
 
