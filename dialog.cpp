@@ -292,7 +292,7 @@ void Dialog::initialize(){
     std::string temp;
     while(ss>>temp){
         printf("temp is %s\n", temp.c_str());
-        usersList->addItem(temp);
+        usersList->addItem(temp.c_str());
     }
 
 
