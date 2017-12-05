@@ -359,7 +359,8 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
     printf("%s ITEM TEST \n", item->text().toStdString().c_str());
     char * room = (char *) item->text().toStdString().c_str();
     char * userlistresponse = new char[MAX_RESPONSE];
-    std::string command1 = "GET-USERS-IN-ROOM " + client->username +" "+ client->password + room;
+    std::string command1 = "GET-USERS-IN-ROOM ";
+    command1 = command1 + client->username + " " + client->password + room;
     client->sendCommand(client->host,client->port, (char *)command1.c_str(), userlistresponse);
     //building user list
     std::stringstream ss1(userlistresponse);
