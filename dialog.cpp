@@ -235,8 +235,11 @@ void Verification::newUserAction(){
     QString passwor= (passwordText->text());
 
     if(!(usernam.isEmpty()) && !(passwor.isEmpty())){
+
+        char * username = strdup((char *) usernameText->text().toStdString().c_str());
+        char * password = strdup((char *) passwordText->text().toStdString().c_str());
        std::string command = "ADD-USER";
-        command = command + " " + username.toStdString() + " " + password.toStdString();
+        command = command + " " + username + " " + password;
         //char * response = new char[MAX_RESPONSE];
         client->sendCommand(client->host,client->port,(char *)command.c_str(), client->response);
         if(!strcmp(client->response, "OK\r\n")){
