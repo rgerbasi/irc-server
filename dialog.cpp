@@ -67,6 +67,8 @@
 #include <unistd.h>
 #include <stdlib.h>
 
+#include <sstream>
+
 #define MAX_RESPONSE (10 * 1024)
 //IRCClient
 IRCClient::IRCClient(){
