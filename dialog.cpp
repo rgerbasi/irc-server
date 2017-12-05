@@ -215,6 +215,8 @@ void Verification::loginAction(){
         QMessageBox msgbox;
         msgbox.setText("Log in error.");
         msgbox.exec();
+        usernameText->clear();
+        passwordText->clear();
     }
 }
 void Verification::newUserAction(){
@@ -275,7 +277,13 @@ Verification::Verification(int argc, char *argv[]){
 //host: 120.10.12.218
 void Dialog::initialize(){
     //here we will add existing users to the current users list and stuff :^)
-    printf("INITIALIZE");
+    printf("INITIALIZE\n");
+    //admin is a default user
+    //because im using admin i am assuming i will always get this response
+    std::string initializeCommand = "GET-ALL-USERS admin admin";
+    char * userListString = new char[MAX_RESPONSE];
+    client->sendCommand(client->host, client->port, initializeCommand, userListString);
+    printf("%s\n", userListString);
 
 }
 
