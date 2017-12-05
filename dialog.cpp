@@ -192,15 +192,14 @@ void Verification::loginAction(){
     //printf("User is %s\npass is %s\n", username, password);
     std::string command = "LOG-IN";
     command = command + " " + username + " " + password;
-    char * response = new char[MAX_RESPONSE];
+    //char * response = new char[MAX_RESPONSE];
     //printf("command is %s\n", command.c_str());
     //sending command ot server to check log in
 
-
-    client->sendCommand(client->host,client->port,(char *)command.c_str(), response);
+    client->sendCommand(client->host,client->port,(char *)command.c_str(), client->response);
     //printf("respone is %s\n", response);
 
-    if(!strcmp(response, "OK\r\n")){
+    if(!strcmp(client->response, "OK\r\n")){
         QMessageBox msgbox;
         msgbox.setText("Welcome Sister.");
         msgbox.exec();
@@ -224,13 +223,16 @@ void Verification::loginAction(){
 }
 void Verification::newUserAction(){
 //new user actoin use clien tto talk to server
-    char * username = strdup((char *) usernameText->text().toStdString().c_str());
-    char * password = strdup((char *) passwordText->text().toStdString().c_str());
+
+    QString username = strdup(usernameText->text();
+    QString password = strdup(passwordText->text();
+
+    if(!(username.isEmpty()) && !(password.isEmpty())){}
     std::string command = "ADD-USER";
-    command = command + " " + username + " " + password;
-    char * response = new char[MAX_RESPONSE];
-    client->sendCommand(client->host,client->port,(char *)command.c_str(), response);
-    if(!strcmp(response, "OK\r\n")){
+    command = command + " " + username.toStdString() + " " + password.toStdString();
+    //char * response = new char[MAX_RESPONSE];
+    client->sendCommand(client->host,client->port,(char *)command.c_str(), client->response);
+    if(!strcmp(client->response, "OK\r\n")){
         QMessageBox msgbox;
         msgbox.setText("New Sister added.");
         msgbox.exec();
@@ -433,11 +435,13 @@ Dialog::Dialog(IRCClient * client, Verification * verification)
     //adding the users that are already in the server and the room lobby
     initialize();
 
+    /*
     for (int i = 0; i < 20; i++) {
         char s[50];
         sprintf(s,"Message %d", i);
         allMessages->append(s);
     }
+    */
 
     // Add layout to main windo
 
@@ -454,8 +458,6 @@ Dialog::Dialog(IRCClient * client, Verification * verification)
 
 
 }
-
-
 void Dialog::createMenu()
 
 {

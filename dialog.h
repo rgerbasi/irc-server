@@ -121,6 +121,8 @@ class IRCClient{
     int port;
     char * username;
     char * password;
+    char * response = new char[10*1024];
+
     IRCClient();
     int open_client_socket(char * host, int port);
     int sendCommand(char *  host, int port, char * command, char * response);
