@@ -204,6 +204,7 @@ void Verification::loginAction(){
         client->username = username;
         client->password = password;
         Dialog dialog(client,this);
+        printf("before dialog show\n");
         dialog.show();
         //dialog.exec();
 
