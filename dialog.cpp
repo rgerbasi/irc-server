@@ -130,7 +130,7 @@ int IRCClient::open_client_socket(char * host, int port){
         exit(1);
     }
 
-    printf("AAH\n");
+    //printf("AAH\n");
     return sock;
 
 }
@@ -193,6 +193,8 @@ void Verification::loginAction(){
     char * response = new char[MAX_RESPONSE];
     //printf("command is %s\n", command.c_str());
     //sending command ot server to check log in
+
+
     client->sendCommand(client->host,client->port,(char *)command.c_str(), response);
     //printf("respone is %s\n", response);
     if(!strcmp(response, "OK\r\n")){
@@ -204,7 +206,8 @@ void Verification::loginAction(){
         Dialog dialog(client,this);
         dialog.show();
         dialog.exec();
-    } else {
+
+        } else {
         QMessageBox msgbox;
         msgbox.setText("Log in error.");
         msgbox.exec();
@@ -257,6 +260,8 @@ Verification::Verification(int argc, char *argv[]){
 
     connect(logInButton, SIGNAL (released()), this, SLOT (loginAction()));
     connect(addnewUser, SIGNAL (released()), this, SLOT (newUserAction()));
+
+
 }
 //reminder : command is one string but it will contain all the arguements for commands
 //host: 120.10.12.218
