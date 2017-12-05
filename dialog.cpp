@@ -219,8 +219,8 @@ void Verification::loginAction(){
 }
 void Verification::newUserAction(){
 //new user actoin use clien tto talk to server
-    char * username = (char *) usernameText->text().toStdString().c_str();
-    char * password = (char *) passwordText->text().toStdString().c_str();
+    char * username = strdup((char *) usernameText->text().toStdString().c_str());
+    char * password = strdup((char *) passwordText->text().toStdString().c_str());
     std::string command = "ADD-USER";
     command = command + " " + username + " " + password;
     char * response = new char[MAX_RESPONSE];
