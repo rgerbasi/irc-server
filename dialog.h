@@ -174,12 +174,13 @@ protected:
     QTextEdit * allMessages;
     QTextEdit * inputMessage;
     QPushButton * sendButton;
-    QPushButton * newUserButton;
+    QPushButton * enterRoomButton;
     QTimer * timer;
 
 private slots:
     void sendAction();
     void newUserAction();
+    void enterRoomAction();
     void timerAction();
     
 };

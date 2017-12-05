@@ -204,7 +204,10 @@ void Verification::loginAction(){
         client->username = username;
         client->password = password;
         Dialog dialog(client,this);
+
+
         dialog.show();
+
         dialog.exec();
 
         } else {
@@ -221,7 +224,11 @@ void Verification::newUserAction(){
     command = command + " " + username + " " + password;
     char * response = new char[MAX_RESPONSE];
     client->sendCommand(client->host,client->port,(char *)command.c_str(), response);
-
+    if(!strcmp(response, "OK\r\n")){
+        QMessageBox msgbox;
+        msgbox.setText("New Sister added.");
+        msgbox.exec();
+    }
 }
 Verification::Verification(int argc, char *argv[]){
     if (argc != 3) printUsage();
@@ -272,14 +279,27 @@ void Dialog::sendAction()
     //client->sendCommand(client->host, client->port)
 
 }
+void Dialog::enterRoomAction(){
 
+    printf("enter room button")
+
+}
 void Dialog::newUserAction()
 {
     printf("New User Button\n");
-    char response[MAX_RESPONSE];
-    //client->sendCommand(client->host, client->port, "ADD-USER Bard Bard", response);
 
 
+/*
+    std::string command = "ADD-USER";
+    command = command + " " + username + " " + password;
+    char * response = new char[MAX_RESPONSE];
+    client->sendCommand(client->host,client->port,(char *)command.c_str(), response);
+    if(!strcmp(response, "OK\r\n")){
+        QMessageBox msgbox;
+        msgbox.setText("New Sister added.");
+        msgbox.exec();
+    }
+ */
 }
 
 void Dialog::timerAction()
@@ -336,13 +356,14 @@ Dialog::Dialog(IRCClient * client, Verification * verification)
     // Send and new account buttons
     QHBoxLayout *layoutButtons = new QHBoxLayout;
     QPushButton * sendButton = new QPushButton("Send");
-    QPushButton * newUserButton = new QPushButton("New Account");
+    //adition
+    QPushButton * enterRoomButton = new QPushButton("Enter Room");
+    layoutButtons->addWidget(enterRoomButton);
     layoutButtons->addWidget(sendButton);
-    layoutButtons->addWidget(newUserButton);
 
     // Setup actions for buttons
     connect(sendButton, SIGNAL (released()), this, SLOT (sendAction()));
-    connect(newUserButton, SIGNAL (released()), this, SLOT (newUserAction()));
+    connect(enterRoomButton, SIGNAL (released()), this, SLOT (enterRoomAction()));
 
     // Add all widgets to window
     mainLayout->addLayout(layoutRoomsUsers);
