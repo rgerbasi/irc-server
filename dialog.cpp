@@ -281,7 +281,7 @@ void Dialog::sendAction()
 }
 void Dialog::enterRoomAction(){
 
-    printf("enter room button")
+    printf("enter room button");
 
 }
 void Dialog::newUserAction()
