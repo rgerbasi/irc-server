@@ -289,7 +289,7 @@ void Dialog::initialize(){
     client->sendCommand(client->host, client->port, "GET-NUMBER-OF-USERS", usernum);
     //got the user number
     std::string usrlist(userListString);
-    std::stringsteam(usrlist);
+    std::stringstream ss(usrlist);
     std::string temp;
     while(ss>>temp){
         printf("temp is %s\n", temp.c_str());
