@@ -340,21 +340,22 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
 
     if(item != NULL){
 
-    char * enterResponse = new char[MAX_RESPONSE];
-    char * room = (char *) item->text().toStdString().c_str();
-    client->curRoom = room;
-    std::string entercommand = "ENTER-ROOM ";
-    entercommand = entercommand + client->username + " " + client->password + " " + room;
-    client->sendCommand(client->host, client->port, (char *) entercommand.c_str() , enterResponse );
-    //sending user has entered room message
-    std::string entermessagecommand = "SEND-MESSAGE ";
-    char * enterMessageResponse = new char[MAX_RESPONSE];
-    entermessagecommand = entermessagecommand + client->username + " " + client->password + " " + room + " has entered the room.";
-    client->sendCommand(client->host, client->port, (char *)entermessagecommand.c_str(),enterMessageResponse);
+        char * enterResponse = new char[MAX_RESPONSE];
+        char * room = (char *) item->text().toStdString().c_str();
+        client->curRoom = room;
+        std::string entercommand = "ENTER-ROOM ";
+        entercommand = entercommand + client->username + " " + client->password + " " + room;
+        client->sendCommand(client->host, client->port, (char *) entercommand.c_str() , enterResponse );
+        //sending user has entered room message
+        if(!strcmp(enterResponse, "OK\r\n")){
+            std::string entermessagecommand = "SEND-MESSAGE ";
+            char * enterMessageResponse = new char[MAX_RESPONSE];
+            entermessagecommand = entermessagecommand + client->username + " " + client->password + " " + room + " has entered the room.";
+            client->sendCommand(client->host, client->port, (char *)entermessagecommand.c_str(),enterMessageResponse);
 
-    //now user has to enter room
-    //leave previous room too
 
+
+        }
     }
 }
 void Dialog::newUserAction()
@@ -376,13 +377,33 @@ void Dialog::updateRooms(){
     }
 }
 void Dialog::updateUsers(){
-    int size = usersList->count();
-    printf("user count is %d\n", size);
+    //size from before updating
+    int usernumber = usersList->count();
+    //printf("user count is %d\n", size);
     usersList->clear();
+
+    /*
+    char * numberofUsers = new char[MAX_RESPONSE];
+    std::string command = "GET-NUMBER-OF-USERS ";
+    command = command + client->username + " " + client->password;
+    client->sendCommand(client->host,client->port, (char *)command.c_str(), numberofUsers);
+
+    char * allusers = new char[MAX_RESPONSE];
+    std::string command1 = "GET-ALL-USERS ";
+    command1 = command1 + client->username + " " + client->password;
+    client->sendCommand(client->host,client->port, (char *)command1.c_str(), allusers);
+    std::stringstream ss(allusers);
+    char * usercheck[atoi(numberofUsers)];
+    std::string temp;
+    int i = 0;
+    while(ss>>temp){
+        usercheck[i++] = (char *)temp.c_str();
+    }
+    */
     char * userlistresponse = new char[MAX_RESPONSE];
-    std::string command1 = "GET-USERS-IN-ROOM ";
-    command1 = command1 + client->username + " " + client->password + " " + client->curRoom;
-    client->sendCommand(client->host,client->port, (char *)command1.c_str(), userlistresponse);
+    std::string command2 = "GET-USERS-IN-ROOM ";
+    command2 = command2 + client->username + " " + client->password + " " + client->curRoom;
+    client->sendCommand(client->host,client->port, (char *)command2.c_str(), userlistresponse);
     //building user list
     std::stringstream ss1(userlistresponse);
     std::string user;
