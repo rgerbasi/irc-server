@@ -449,7 +449,7 @@ void Dialog::updateMessages(){
     allMessages->append(messagelistresponse);
     std::stringstream ss;
     ss<<(messageCount -1 );
-    printf("cur message is %s, message count is %d", curmessage.c_str(), messageCount);
+    printf("cur message is %s, message count is %d\n", curmessage.c_str(), messageCount);
     curmessage = ss.str();
 
 }
@@ -585,7 +585,13 @@ void Dialog::createMenu()
 
     connect(exitAction, SIGNAL(triggered()), this, SLOT(accept()));
 }
+void Dialog::reject(){
+    printf("DIALOG REJECT\n");
 
+
+
+
+}
 
 //NEW WINDOW FOR USER VERIFICATION CLASS
 
