@@ -458,7 +458,7 @@ void Dialog::timerAction()
     //messageCount++;
     char message[50];
     sprintf(message,"Timer Refresh New message %d",messageCount);
-    allMessages->append(message);
+    //allMessages->append(message);
     //additions
     //updating
     printf("%s\n", curRoom.c_str());
