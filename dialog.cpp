@@ -353,7 +353,7 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
 
         std::string leavemessage = "SEND-MESSAGE ";
         leavemessage = leavemessage + client->username + " " + client->password + " " + prevroom;
-        client->sendCommand(client->host, client->port, (char *) leavemessage.c_str() , leaveResponse));
+        client->sendCommand(client->host, client->port, (char *) leavemessage.c_str() , leaveResponse);
         //sent message to previous room that user has left
 
         client->curRoom = room;
@@ -393,26 +393,11 @@ void Dialog::updateRooms(){
 }
 void Dialog::updateUsers(){
     //size from before updating
-    int usernumber = usersList->count();
+    //int usernumber = usersList->count();
     //printf("user count is %d\n", size);
     usersList->clear();
 
-/*
-    char * numberofUsers = new char[MAX_RESPONSE];
-    std::string command = "GET-NUMBER-OF-USERS-IN-ROOM ";
-    command = command + client->username + " " + client->password + " " + client->curRoom;
-    client->sendCommand(client->host,client->port, (char *)command.c_str(), numberofUsers);
 
-    //user was added
-    if(atoi(numberofUsers) > usernumber){
-
-
-
-    } else if (atoi(numberofUsers) < usernumber) {
-        //user has left send messg
-
-    }
-   */
 
     char * userlistresponse = new char[MAX_RESPONSE];
     std::string command2 = "GET-USERS-IN-ROOM ";
