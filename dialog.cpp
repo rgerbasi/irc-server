@@ -382,24 +382,13 @@ void Dialog::updateUsers(){
     //printf("user count is %d\n", size);
     usersList->clear();
 
-    /*
+
     char * numberofUsers = new char[MAX_RESPONSE];
-    std::string command = "GET-NUMBER-OF-USERS ";
-    command = command + client->username + " " + client->password;
+    std::string command = "GET-NUMBER-OF-USERS-IN-ROOM ";
+    command = command + client->username + " " + client->password + " " + client->curRoom;
     client->sendCommand(client->host,client->port, (char *)command.c_str(), numberofUsers);
 
-    char * allusers = new char[MAX_RESPONSE];
-    std::string command1 = "GET-ALL-USERS ";
-    command1 = command1 + client->username + " " + client->password;
-    client->sendCommand(client->host,client->port, (char *)command1.c_str(), allusers);
-    std::stringstream ss(allusers);
-    char * usercheck[atoi(numberofUsers)];
-    std::string temp;
-    int i = 0;
-    while(ss>>temp){
-        usercheck[i++] = (char *)temp.c_str();
-    }
-    */
+
     char * userlistresponse = new char[MAX_RESPONSE];
     std::string command2 = "GET-USERS-IN-ROOM ";
     command2 = command2 + client->username + " " + client->password + " " + client->curRoom;
