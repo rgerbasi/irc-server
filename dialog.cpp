@@ -638,7 +638,7 @@ void Dialog::reject(){
     verification->show();
     verification->usernameText->clear();
     verification->passwordText->clear();
-    delete this;
+    //delete this;
     QDialog::reject();
 }
 
