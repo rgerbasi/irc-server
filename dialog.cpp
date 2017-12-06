@@ -584,12 +584,27 @@ void Dialog::createMenu()
     fileMenu = new QMenu(tr("&File"), this);
     exitAction = fileMenu->addAction(tr("E&xit"));
     menuBar->addMenu(fileMenu);
-
     connect(exitAction, SIGNAL(triggered()), this, SLOT(accept()));
 }
 void Dialog::reject(){
     //printf("DIALOG REJECT\n");
     //parent reject
+    //if closing window we will leauve room
+
+    char * leaveResponse = new char[MAX_RESPONSE];
+    std::string leavemessage = "SEND-MESSAGE ";
+    leavemessage = leavemessage + client->username + " " + client->password + " " + curRoom + " has left the room.";;
+    client->sendCommand(client->host, client->port, (char *) leavemessage.c_str() , leaveResponse);
+    //sent message to previous room that user has left
+    messageCount++;
+    std::string leavecommand = "LEAVE-ROOM ";
+    leavecommand = leavecommand + client->username + " " + client->password + " " + curRoom;
+    client->sendCommand(client->host, client->port, (char *) leavecommand.c_str() , leaveResponse);
+    //assuming leaveresponse is ok
+    //printf("LEAVE respoNSE is %s\n", leaveResponse);
+
+
+
     verification->show();
     verification->usernameText->clear();
     verification->passwordText->clear();
