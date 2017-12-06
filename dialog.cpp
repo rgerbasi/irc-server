@@ -365,8 +365,8 @@ void Dialog::newUserAction()
 void Dialog::updateRooms(){
     roomsList->clear();
     char * allrooms = new char[MAX_RESPONSE];
-    std::string command1 = "GET-ALL-ROOMS";
-    //command1 = command1 + client->username + " " + client->password + " " + room;
+    std::string command1 = "GET-ALL-ROOMS ";
+    command1 = command1 + client->username + " " + client->password;
     client->sendCommand(client->host,client->port, (char *)command1.c_str(), allrooms);
     //building roomlist
     std::stringstream ss(allrooms);
@@ -376,6 +376,7 @@ void Dialog::updateRooms(){
     }
 }
 void Dialog::updateUsers(){
+    int size = usersList->size();
     usersList->clear();
     char * userlistresponse = new char[MAX_RESPONSE];
     std::string command1 = "GET-USERS-IN-ROOM ";
