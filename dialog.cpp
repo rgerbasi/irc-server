@@ -340,7 +340,7 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
     //now user has to enter room
     //leave previous room too
     if(item != NULL){
-    char * response = new char[MAX_RESPONSE];
+
         /*
     std::string leavecommand = "LEAVE-ROOM ";
     char * response = new char[MAX_RESPONSE];
@@ -350,11 +350,18 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
     //user left the room now time to add it to a room
 
     */
+    char * enterResponse = new char[MAX_RESPONSE];
     char * room = (char *) item->text().toStdString().c_str();
     client->curRoom = room;
     std::string entercommand = "ENTER-ROOM ";
     entercommand = entercommand + client->username + " " + client->password + " " + room;
-    client->sendCommand(client->host, client->port, (char *) entercommand.c_str() , response );
+    client->sendCommand(client->host, client->port, (char *) entercommand.c_str() , enterResponse );
+    //sending user has entered room message
+    std::string entermessagecommand = "SEND-MESSAGE ";
+    char * enterMessageResponse = new char[MAX_RESPONSE];
+    entermessagecommand = entermessagecommand + client->username + " " + client->password + room;
+    client->sendCommand(client->host, client->port, (char *)entermessagecommand.c_str(),enterMessageResponse);
+
 
 
     //this is where you load the messages
