@@ -353,7 +353,7 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
 
         std::string leavemessage = "SEND-MESSAGE ";
         leavemessage = leavemessage + client->username + " " + client->password + " " + prevroom;
-        client->sendCommand(client->host, client->port, (char *) leavemessage.c_str() , leaveResponse);)
+        client->sendCommand(client->host, client->port, (char *) leavemessage.c_str() , leaveResponse));
         //sent message to previous room that user has left
 
         client->curRoom = room;
