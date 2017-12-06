@@ -168,6 +168,7 @@ private:
     void updateUsers();
     void updateMessages();
     void getMessages();
+    void reject();
 
     void createMenu();
     void createHorizontalGroupBox();
