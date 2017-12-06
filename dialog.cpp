@@ -359,9 +359,8 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
     //sending user has entered room message
     std::string entermessagecommand = "SEND-MESSAGE ";
     char * enterMessageResponse = new char[MAX_RESPONSE];
-    entermessagecommand = entermessagecommand + client->username + " " + client->password + room;
+    entermessagecommand = entermessagecommand + client->username + " " + client->password + room + " has entered the room.";
     client->sendCommand(client->host, client->port, (char *)entermessagecommand.c_str(),enterMessageResponse);
-
 
 
     //this is where you load the messages
