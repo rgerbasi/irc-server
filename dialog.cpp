@@ -340,9 +340,24 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
 
     if(item != NULL){
 
-        char * enterResponse = new char[MAX_RESPONSE];
+
         char * room = (char *) item->text().toStdString().c_str();
+        char * prevroom = client->curRoom;
+        //user has to leave previous room
+        char * leaveResponse = new char[MAX_RESPONSE];
+        std::string leavecommand = "LEAVE-ROOM ";
+        leavecommand = leavecommand + client->username + " " + client->password + " " + prevroom + " " + " has left the room.";
+        client->sendCommand(client->host, client->port, (char *) leavecommand.c_str() , leaveResponse);
+        //assuming leaveresponse is ok
+        printf("LEAVE respoNSE is %s\n", leaveResponse);
+
+        std::string leavemessage = "SEND-MESSAGE ";
+        leavemessage = leavemessage + client->username + " " + client->password + " " + prevroom;
+        client->sendCommand(client->host, client->port, (char *) leavemessage.c_str() , leaveResponse);)
+        //sent message to previous room that user has left
+
         client->curRoom = room;
+        char * enterResponse = new char[MAX_RESPONSE];
         std::string entercommand = "ENTER-ROOM ";
         entercommand = entercommand + client->username + " " + client->password + " " + room;
         client->sendCommand(client->host, client->port, (char *) entercommand.c_str() , enterResponse );
@@ -382,13 +397,22 @@ void Dialog::updateUsers(){
     //printf("user count is %d\n", size);
     usersList->clear();
 
-
+/*
     char * numberofUsers = new char[MAX_RESPONSE];
     std::string command = "GET-NUMBER-OF-USERS-IN-ROOM ";
     command = command + client->username + " " + client->password + " " + client->curRoom;
     client->sendCommand(client->host,client->port, (char *)command.c_str(), numberofUsers);
 
+    //user was added
+    if(atoi(numberofUsers) > usernumber){
 
+
+
+    } else if (atoi(numberofUsers) < usernumber) {
+        //user has left send messg
+
+    }
+   */
 
     char * userlistresponse = new char[MAX_RESPONSE];
     std::string command2 = "GET-USERS-IN-ROOM ";
