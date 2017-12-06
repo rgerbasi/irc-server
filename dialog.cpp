@@ -315,11 +315,12 @@ void Dialog::initialize(){
 void Dialog::sendAction()
 {    
      printf("Send Button\n");
-     /*
-    char * response = new char[MAX_RESPONSE];
-    client->sendCommand(client->host, client->port)
-    */
 
+    char * response = new char[MAX_RESPONSE];
+    std::string command = "SEND-MESSAGE ";
+    command = command + client->username + " " + client->password + " " + curRoom + " " + inputMessage->toPlainText().toStdString();
+    client->sendCommand(client->host, client->port, (char *) command.c_str() , response );
+    inputMessage->clear();
 
 }
 void Dialog::createRoomAction(){
