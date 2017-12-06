@@ -430,6 +430,7 @@ void Dialog::updateUsers(){
 void Dialog::updateMessages(){
     char * messagelistresponse = new char[MAX_RESPONSE];
     std::string command2 = "GET-MESSAGES ";
+
     command2 = command2 + client->username + " " + client->password + " "+ curmessage+" " + curRoom;
     client->sendCommand(client->host,client->port, (char *)command2.c_str(), messagelistresponse);
     //building messages
