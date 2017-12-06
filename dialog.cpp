@@ -376,7 +376,8 @@ void Dialog::updateRooms(){
     }
 }
 void Dialog::updateUsers(){
-    int size = usersList->size();
+    int size = usersList->count();
+    printf("user count is %d\n", size);
     usersList->clear();
     char * userlistresponse = new char[MAX_RESPONSE];
     std::string command1 = "GET-USERS-IN-ROOM ";
