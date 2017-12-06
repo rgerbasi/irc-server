@@ -249,6 +249,37 @@ void Verification::newUserAction(){
             QMessageBox msgbox;
             msgbox.setText("New Sister added.");
             msgbox.exec();
+
+            //automaticallylogin
+            std::string command1 = "LOG-IN";
+            command1 = command1 + " " + username + " " + password;
+            char * response = new char[MAX_RESPONSE];
+            //printf("command is %s\n", command.c_str());
+            //sending command ot server to check log in
+            client->sendCommand(client->host,client->port,(char *)command1.c_str(), response);
+            //printf("respone is %s\n", response);
+
+            if(!strcmp(response, "OK\r\n")){
+                QMessageBox msgbox;
+                msgbox.setText("Welcome Sister.");
+                msgbox.exec();
+                printf("before username and dialog constructor\n");
+                client->username = username;
+                client->password = password;
+
+                Dialog dialog(client,this);
+                //printf("before dialog show\n");
+                this->hide();
+                dialog.show();
+                dialog.exec();
+
+                } else {
+                QMessageBox msgbox;
+                msgbox.setText("Log in error.");
+               msgbox.exec();
+                usernameText->clear();
+                passwordText->clear();
+            }
         }
     } else {
         //empty fields
