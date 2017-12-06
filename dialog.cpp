@@ -302,11 +302,11 @@ void Dialog::initialize(){
     //here we will add existing users to the current users list and stuff :^)
     printf("INITIALIZE\n");
     //initialize user curRoom
-    client->curRoom = (char *)"lobby";
+    curRoom = (char *)"lobby";
 
     std::string entermessagecommand = "SEND-MESSAGE ";
     char * enterMessageResponse = new char[MAX_RESPONSE];
-    entermessagecommand = entermessagecommand + client->username + " " + client->password + " " + client->curRoom + " has entered the room.";
+    entermessagecommand = entermessagecommand + client->username + " " + client->password + " " + curRoom + " has entered the room.";
     client->sendCommand(client->host, client->port, (char *)entermessagecommand.c_str(),enterMessageResponse);
 
 
