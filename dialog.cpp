@@ -138,7 +138,7 @@ int IRCClient::open_client_socket(char * host, int port){
 }
 int IRCClient::sendCommand(char *  host, int port, char * command, char * response){
     //send command
-    printf("SEND COMMAND TO SERVER HOST=%s port=%d command=%s\n",host, port, command);
+    //printf("SEND COMMAND TO SERVER HOST=%s port=%d command=%s\n",host, port, command);
     int sock = open_client_socket( host, port);
     //printf("after openclient socket\n");
     if (sock<0) {
@@ -146,7 +146,7 @@ int IRCClient::sendCommand(char *  host, int port, char * command, char * respon
     }
 
     // Send command
-    printf("writing command to socket\n");
+    //printf("writing command to socket\n");
     write(sock, command, strlen(command));
     write(sock, "\r\n",2);
 
@@ -187,7 +187,7 @@ void Verification::loginAction(){
     //construct dialog here?
     QString usernam = usernameText->text();
     QString passwor = passwordText->text();
-    printf("username in box is %s\npassword is %s\n", usernam.toStdString().c_str(), passwor.toStdString().c_str() );
+    //printf("username in box is %s\npassword is %s\n", usernam.toStdString().c_str(), passwor.toStdString().c_str() );
     if(!usernam.isEmpty() && !passwor.isEmpty()) {
         char * username = strdup((char *) usernameText->text().toStdString().c_str());
         char * password = strdup((char *) passwordText->text().toStdString().c_str());
@@ -408,6 +408,7 @@ void Dialog::newUserAction()
     //deprecated function probably not doing it sry
 }
 void Dialog::updateRooms(){
+    roomsList->clear();
     char * allrooms = new char[MAX_RESPONSE];
     std::string command1 = "GET-ALL-ROOMS";
     //command1 = command1 + client->username + " " + client->password + " " + room;
@@ -416,10 +417,11 @@ void Dialog::updateRooms(){
     std::stringstream ss(allrooms);
     std::string room;
     while(ss >> room){
-        usersList->addItem(room.c_str());
+        roomsList->addItem(room.c_str());
     }
 }
 void Dialog::updateUsers(){
+    usersList->clear();
     char * userlistresponse = new char[MAX_RESPONSE];
     std::string command1 = "GET-USERS-IN-ROOM ";
     command1 = command1 + client->username + " " + client->password + " " + client->curRoom;
