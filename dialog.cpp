@@ -474,6 +474,7 @@ Dialog::Dialog(IRCClient * client, Verification * verification)
     createMenu();
     //
     this->client = client;
+    this->verification = verification;
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
 
