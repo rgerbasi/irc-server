@@ -308,10 +308,7 @@ void Dialog::initialize(){
     char * enterMessageResponse = new char[MAX_RESPONSE];
     entermessagecommand = entermessagecommand + client->username + " " + client->password + " " + curRoom + " has entered the room.";
     client->sendCommand(client->host, client->port, (char *)entermessagecommand.c_str(),enterMessageResponse);
-
-
 }
-
 void Dialog::sendAction()
 {    
      printf("Send Button\n");
@@ -343,15 +340,17 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
     //printf("SELECT ROOm\n");
 
     if(item != NULL){
+      printf("%s cur room and item is is %s\n", curRoom.c_str(), item->text().toStdString().c_str());
+
 
       char * leaveResponse = new char[MAX_RESPONSE];
         std::string leavemessage = "SEND-MESSAGE ";
-        leavemessage = leavemessage + client->username + " " + client->password + " " + item->text().toStdString() + " has left the room.";;
+        leavemessage = leavemessage + client->username + " " + client->password + " " + curRoom + " has left the room.";;
         client->sendCommand(client->host, client->port, (char *) leavemessage.c_str() , leaveResponse);
         //sent message to previous room that user has left
 
         std::string leavecommand = "LEAVE-ROOM ";
-        leavecommand = leavecommand + client->username + " " + client->password + " " + item->text().toStdString();
+        leavecommand = leavecommand + client->username + " " + client->password + " " + curRoom;
         client->sendCommand(client->host, client->port, (char *) leavecommand.c_str() , leaveResponse);
         //assuming leaveresponse is ok
         printf("LEAVE respoNSE is %s\n", leaveResponse);
@@ -434,6 +433,7 @@ void Dialog::timerAction()
     allMessages->append(message);
     //additions
     //updating
+    printf("%s\n", curRoom.c_str());
     updateRooms();
     updateUsers();
     updateMessages();
