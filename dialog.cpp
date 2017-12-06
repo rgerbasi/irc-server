@@ -371,21 +371,6 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
         client->sendCommand(client->host, client->port, (char *) leavemessage.c_str() , leaveResponse);
         //sent message to previous room that user has left
 
-        client->curRoom = room;
-        char * enterResponse = new char[MAX_RESPONSE];
-        std::string entercommand = "ENTER-ROOM ";
-        entercommand = entercommand + client->username + " " + client->password + " " + room;
-        client->sendCommand(client->host, client->port, (char *) entercommand.c_str() , enterResponse );
-        //sending user has entered room message
-        if(!strcmp(enterResponse, "OK\r\n")){
-            std::string entermessagecommand = "SEND-MESSAGE ";
-            char * enterMessageResponse = new char[MAX_RESPONSE];
-            entermessagecommand = entermessagecommand + client->username + " " + client->password + " " + room + " has entered the room.";
-            client->sendCommand(client->host, client->port, (char *)entermessagecommand.c_str(),enterMessageResponse);
-
-
-
-        }
     }
 }
 void Dialog::newUserAction()
