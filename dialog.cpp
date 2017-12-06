@@ -356,6 +356,7 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
         if(!strcmp(enterResponse, "OK\r\n")){
             std::string entermessagecommand = "SEND-MESSAGE ";
             char * enterMessageResponse = new char[MAX_RESPONSE];
+            printf("CLIENT CUR ROOM %s and item is %s\n", client->curRoom, item->text().toStdString().c_str());
             entermessagecommand = entermessagecommand + client->username + " " + client->password + " " + client->curRoom + " has entered the room.";
             printf("emessage command%s\n", entermessagecommand.c_str());
             client->sendCommand(client->host, client->port, (char *)entermessagecommand.c_str(),enterMessageResponse);
