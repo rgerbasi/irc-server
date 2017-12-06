@@ -301,25 +301,9 @@ Verification::Verification(int argc, char *argv[]){
 void Dialog::initialize(){
     //here we will add existing users to the current users list and stuff :^)
     printf("INITIALIZE\n");
-    //admin is a default user
-    //because im using admin i am assuming i will always get this response
-    std::string initializeCommand = "GET-ALL-USERS admin admin";
-    char * userListString = new char[MAX_RESPONSE];
-    client->sendCommand(client->host, client->port,(char *) initializeCommand.c_str(), userListString);
-    //printf("%s\n", userListString);
-    //got the user number
-    std::stringstream ss(userListString);
-    std::string temp;
-    std::string usermessage = " has entered the room.";
-    std::string mess;
-    while(ss>>temp){
-        //printf("temp is %s\n", temp.c_str());
-        usersList->addItem(temp.c_str());
-        mess = temp + usermessage;
-        allMessages->append(mess.c_str());
-    }
     //initialize user curRoom
     client->curRoom = (char *)"lobby";
+
 
 
 
