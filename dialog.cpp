@@ -343,15 +343,23 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
 
     if(item != NULL){
 
+      char * leaveResponse = new char[MAX_RESPONSE];
+        std::string leavemessage = "SEND-MESSAGE ";
+        leavemessage = leavemessage + client->username + " " + client->password + " " + item->text().toStdString() + " has left the room.";;
+        client->sendCommand(client->host, client->port, (char *) leavemessage.c_str() , leaveResponse);
+        //sent message to previous room that user has left
 
-        char * room = (char *) item->text().toStdString().c_str();
-        char * prevroom = (char * ) curRoom.c_str();
-        //user has to leave previous room
-        if(!strcmp(room,prevroom)) return;
-        curRoom = room;
+        std::string leavecommand = "LEAVE-ROOM ";
+        leavecommand = leavecommand + client->username + " " + client->password + " " + item->text().toStdString();
+        client->sendCommand(client->host, client->port, (char *) leavecommand.c_str() , leaveResponse);
+        //assuming leaveresponse is ok
+        printf("LEAVE respoNSE is %s\n", leaveResponse);
+
+
+        curRoom = item->text().toStdString();
         char * enterResponse = new char[MAX_RESPONSE];
         std::string entercommand = "ENTER-ROOM ";
-        entercommand = entercommand + client->username + " " + client->password + " " + room;
+        entercommand = entercommand + client->username + " " + client->password + " " + item->text().toStdString();
         client->sendCommand(client->host, client->port, (char *) entercommand.c_str() , enterResponse );
         //sending user has entered room message
         if(!strcmp(enterResponse, "OK\r\n")){
@@ -363,20 +371,8 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
             printf("emessage command%s\n", entermessagecommand.c_str());
             client->sendCommand(client->host, client->port, (char *)entermessagecommand.c_str(),enterMessageResponse);
         }
-        char * leaveResponse = new char[MAX_RESPONSE];
 
-        std::string leavemessage = "SEND-MESSAGE ";
-        leavemessage = leavemessage + client->username + " " + client->password + " " + prevroom + " has left the room.";;
-        client->sendCommand(client->host, client->port, (char *) leavemessage.c_str() , leaveResponse);
-        //sent message to previous room that user has left
 
-        std::string leavecommand = "LEAVE-ROOM ";
-        leavecommand = leavecommand + client->username + " " + client->password + " " + prevroom;
-        client->sendCommand(client->host, client->port, (char *) leavecommand.c_str() , leaveResponse);
-        //assuming leaveresponse is ok
-        printf("LEAVE respoNSE is %s\n", leaveResponse);
-
-        curRoom = (char *) item->text().toStdString().c_str();
         printf("%s cur room is %s\n", curRoom.c_str(), item->text().toStdString().c_str());
 
 
