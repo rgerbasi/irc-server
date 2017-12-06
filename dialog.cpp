@@ -445,7 +445,7 @@ void Dialog::updateMessages(){
     //building messages
     allMessages->append(messagelistresponse);
     std::stringstream ss;
-    ss<<messageCount;
+    ss<<(messageCount -1 );
     printf("cur message is %s, message count is %d", curmessage.c_str(), messageCount);
     curmessage = ss.str();
 
