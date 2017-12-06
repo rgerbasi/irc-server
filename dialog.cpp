@@ -268,7 +268,6 @@ void Verification::newUserAction(){
                 client->password = password;
 
                 Dialog dialog(client,this);
-                //printf("before dialog show\n");
                 this->hide();
                 dialog.show();
                 dialog.exec();
@@ -639,6 +638,7 @@ void Dialog::reject(){
     verification->show();
     verification->usernameText->clear();
     verification->passwordText->clear();
+    delete this;
     QDialog::reject();
 }
 
