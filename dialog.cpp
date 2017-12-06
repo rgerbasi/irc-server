@@ -346,10 +346,9 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
     char * response = new char[MAX_RESPONSE];
     leavecommand = leavecommand + client->username + " " + client->password + " " + client->curRoom;
     client->sendCommand(client->host, client->port, (char *) leavecommand.c_str(), response );
-
     //user left the room now time to add it to a room
-
     */
+
     char * enterResponse = new char[MAX_RESPONSE];
     char * room = (char *) item->text().toStdString().c_str();
     client->curRoom = room;
@@ -362,31 +361,6 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
     entermessagecommand = entermessagecommand + client->username + " " + client->password + room + " has entered the room.";
     client->sendCommand(client->host, client->port, (char *)entermessagecommand.c_str(),enterMessageResponse);
 
-
-    //this is where you load the messages
-    usersList->clear();
-    printf("%s ITEM TEST \n", item->text().toStdString().c_str());
-    //char * room = (char *) item->text().toStdString().c_str();
-    char * userlistresponse = new char[MAX_RESPONSE];
-    std::string command1 = "GET-USERS-IN-ROOM ";
-    command1 = command1 + client->username + " " + client->password + " " + room;
-    client->sendCommand(client->host,client->port, (char *)command1.c_str(), userlistresponse);
-    //building user list
-    std::stringstream ss1(userlistresponse);
-    std::string user;
-    while(ss1>>user){
-        usersList->addItem(user.c_str());
-    }
-    char * messagelistresponse = new char[MAX_RESPONSE];
-    std::string command2 = "GET-MESSAGES ";
-    command2 = command2 + client->username + " " + client->password + " 0 " + room;
-    client->sendCommand(client->host,client->port, (char *)command2.c_str(), messagelistresponse);
-    //building messages
-    std::stringstream ss2(messagelistresponse);
-    std::string message;
-    while(ss2>>message) {
-        allMessages->append(message.c_str());
-    }
     //now user has to enter room
     //leave previous room too
 
