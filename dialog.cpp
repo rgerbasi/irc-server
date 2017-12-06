@@ -83,7 +83,7 @@ IRCClient::IRCClient(){
 int IRCClient::open_client_socket(char * host, int port){
     //open client socket
     // Initialize socket address structure
-    printf("in open client socket\n");
+    //printf("in open client socket\n");
     struct  sockaddr_in socketAddress;
 
     // Clear sockaddr structure
@@ -155,14 +155,15 @@ int IRCClient::sendCommand(char *  host, int port, char * command, char * respon
     //write(1, "\r\n",2);
 
     // Keep reading until connection is closed or MAX_REPONSE
-    printf("response building\n");
+    //printf("response building\n");
+
     int n = 0;
     int len = 0;
     while ((n=read(sock, response+len, MAX_RESPONSE - len))>0) {
         len += n;
     }
     response[len]=0;
-
+    printf("command:\n%s\n", command);
     printf("response:\n%s\n", response);
 
     close(sock);
@@ -454,7 +455,7 @@ void Dialog::updateMessages(){
 void Dialog::timerAction()
 {
     printf("Timer wakeup\n");
-    messageCount++;
+    //messageCount++;
     char message[50];
     sprintf(message,"Timer Refresh New message %d",messageCount);
     allMessages->append(message);
