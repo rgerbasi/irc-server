@@ -356,6 +356,7 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
     //now user has to enter room
     //leave previous room too
     if(item != NULL){
+    char * response = new char[MAX_RESPONSE];
         /*
     std::string leavecommand = "LEAVE-ROOM ";
     char * response = new char[MAX_RESPONSE];
