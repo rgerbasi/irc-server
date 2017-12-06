@@ -345,7 +345,7 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
 
 
         char * room = (char *) item->text().toStdString().c_str();
-        char * prevroom = curRoom;
+        char * prevroom = (char * ) curRoom.c_str();
         //user has to leave previous room
         if(!strcmp(room,prevroom)) return;
         curRoom = room;
