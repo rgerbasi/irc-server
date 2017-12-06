@@ -313,7 +313,7 @@ void Dialog::initialize(){
     client->sendCommand(client->host, client->port, (char *)entermessagecommand.c_str(),enterMessageResponse);
 }
 void Dialog::sendAction()
-{    
+{
      printf("Send Button\n");
 
     char * response = new char[MAX_RESPONSE];
@@ -591,8 +591,6 @@ void Dialog::reject(){
     //printf("DIALOG REJECT\n");
     //parent reject
     verification->show();
-    verification->usernameText->clear();
-    verification->passwordText->clear();
     QDialog::reject();
 }
 
