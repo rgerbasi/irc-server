@@ -407,8 +407,6 @@ void Dialog::updateUsers(){
     //printf("user count is %d\n", size);
     usersList->clear();
 
-
-
     char * userlistresponse = new char[MAX_RESPONSE];
     std::string command2 = "GET-USERS-IN-ROOM ";
     command2 = command2 + client->username + " " + client->password + " " + curRoom;

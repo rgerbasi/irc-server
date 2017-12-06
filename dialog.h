@@ -159,7 +159,7 @@ public:
 
 private:
     int messageCount;
-    char * curRoom;
+    std::string curRoom;
 
     //addition
     void initialize();
