@@ -360,7 +360,7 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
     char * enterMessageResponse = new char[MAX_RESPONSE];
     entermessagecommand = entermessagecommand + client->username + " " + client->password + room + " has entered the room.";
     client->sendCommand(client->host, client->port, (char *)entermessagecommand.c_str(),enterMessageResponse);
-
+i
     //now user has to enter room
     //leave previous room too
 
