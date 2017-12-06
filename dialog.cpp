@@ -380,6 +380,15 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
         printf("%s cur room is %s\n", curRoom.c_str(), item->text().toStdString().c_str());
         getMessages();
 
+        //getting cur messages in room
+        char * curmessagesres = new char[MAX_RESPONSE];
+        std::string entercommand = "GET-NUMBER-OF-MESSAGES ";
+        entercommand = entercommand + client->username + " " + client->password + " " + item->text().toStdString();
+        client->sendCommand(client->host, client->port, (char *) entercommand.c_str() , curmessagesres);
+        printf("cur messages in room %s\n", curmessagesres );
+        messageCount = curmessagesres;
+
+
 
     }
 }
