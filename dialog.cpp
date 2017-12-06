@@ -185,12 +185,9 @@ void Verification::createMenu(){
 void Verification::loginAction(){
 //login action user clien tot talk to server
     //construct dialog here?
-   //LineEdit*test;
-
-
     QString usernam = usernameText->text();
     QString passwor = passwordText->text();
-
+    printf("username in box is %s\npassword is %s\n", usernam.toStdString().c_str(), passwor.toStdString().c_str() );
     if(!usernam.isEmpty() && !passwor.isEmpty()) {
         char * username = strdup((char *) usernameText->text().toStdString().c_str());
         char * password = strdup((char *) passwordText->text().toStdString().c_str());
@@ -200,7 +197,6 @@ void Verification::loginAction(){
         char * response = new char[MAX_RESPONSE];
         //printf("command is %s\n", command.c_str());
         //sending command ot server to check log in
-
 
         client->sendCommand(client->host,client->port,(char *)command.c_str(), response);
         //printf("respone is %s\n", response);
@@ -360,12 +356,15 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
     //now user has to enter room
     //leave previous room too
     if(item != NULL){
+        /*
     std::string leavecommand = "LEAVE-ROOM ";
     char * response = new char[MAX_RESPONSE];
     leavecommand = leavecommand + client->username + " " + client->password + " " + client->curRoom;
     client->sendCommand(client->host, client->port, (char *) leavecommand.c_str(), response );
 
     //user left the room now time to add it to a room
+
+    */
     char * room = (char *) item->text().toStdString().c_str();
     client->curRoom = room;
     std::string entercommand = "ENTER-ROOM ";
@@ -385,7 +384,6 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
     std::stringstream ss1(userlistresponse);
     std::string user;
     while(ss1>>user){
-
         usersList->addItem(user.c_str());
     }
     char * messagelistresponse = new char[MAX_RESPONSE];
@@ -398,27 +396,62 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
     while(ss2>>message) {
         allMessages->append(message.c_str());
     }
-
     //now user has to enter room
     //leave previous room too
+
     }
-
-
 }
 void Dialog::newUserAction()
 {
     printf("New User Button\n");
     //deprecated function probably not doing it sry
 }
+void Dialog::updateRooms(){
+    char * allrooms = new char[MAX_RESPONSE];
+    std::string command1 = "GET-ALL-ROOMS";
+    //command1 = command1 + client->username + " " + client->password + " " + room;
+    client->sendCommand(client->host,client->port, (char *)command1.c_str(), allrooms);
+    //building roomlist
+    std::stringstream ss(allrooms);
+    std::string room;
+    while(ss >> room){
+        usersList->addItem(room.c_str());
+    }
+}
+void Dialog::updateUsers(){
+    char * userlistresponse = new char[MAX_RESPONSE];
+    std::string command1 = "GET-USERS-IN-ROOM ";
+    command1 = command1 + client->username + " " + client->password + " " + client->curRoom;
+    client->sendCommand(client->host,client->port, (char *)command1.c_str(), userlistresponse);
+    //building user list
+    std::stringstream ss1(userlistresponse);
+    std::string user;
+    while(ss1>>user){
+        usersList->addItem(user.c_str());
+    }
+}
+void Dialog::updateMessages(){
+    char * messagelistresponse = new char[MAX_RESPONSE];
+    std::string command2 = "GET-MESSAGES ";
+    command2 = command2 + client->username + " " + client->password + " 0 " + client->curRoom;
+    client->sendCommand(client->host,client->port, (char *)command2.c_str(), messagelistresponse);
+    //building messages
+    allMessages->append(messagelistresponse);
+
+}
 
 void Dialog::timerAction()
 {
     printf("Timer wakeup\n");
     messageCount++;
-
     char message[50];
     sprintf(message,"Timer Refresh New message %d",messageCount);
     allMessages->append(message);
+    //additions
+    //updating
+    updateRooms();
+    updateUsers();
+    updateMessages();
 }
 
 Dialog::Dialog(IRCClient * client, Verification * verification)

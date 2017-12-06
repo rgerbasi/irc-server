@@ -162,6 +162,9 @@ private:
 
     //addition
     void initialize();
+    void updateRooms();
+    void updateUsers();
+    void updateMessages();
 
     void createMenu();
     void createHorizontalGroupBox();
