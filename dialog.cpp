@@ -303,6 +303,7 @@ void Dialog::initialize(){
     printf("INITIALIZE\n");
     //initialize user curRoom
     client->curRoom = (char *)"lobby";
+
     std::string entermessagecommand = "SEND-MESSAGE ";
     char * enterMessageResponse = new char[MAX_RESPONSE];
     entermessagecommand = entermessagecommand + client->username + " " + client->password + " " + client->curRoom + " has entered the room.";
@@ -344,10 +345,10 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
 
 
         char * room = (char *) item->text().toStdString().c_str();
-        char * prevroom = client->curRoom;
+        char * prevroom = curRoom;
         //user has to leave previous room
         if(!strcmp(room,prevroom)) return;
-        client->curRoom = room;
+        curRoom = room;
         char * enterResponse = new char[MAX_RESPONSE];
         std::string entercommand = "ENTER-ROOM ";
         entercommand = entercommand + client->username + " " + client->password + " " + room;
@@ -356,8 +357,8 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
         if(!strcmp(enterResponse, "OK\r\n")){
             std::string entermessagecommand = "SEND-MESSAGE ";
             char * enterMessageResponse = new char[MAX_RESPONSE];
-            printf("CLIENT CUR ROOM %s and item is %s\n", client->curRoom, item->text().toStdString().c_str());
-            client->curRoom = (char *) item->text().toStdString().c_str();
+            //printf("CLIENT CUR ROOM %s and item is %s\n", client->curRoom, item->text().toStdString().c_str());
+
             entermessagecommand = entermessagecommand + client->username + " " + client->password + " " + item->text().toStdString().c_str() + " has entered the room.";
             printf("emessage command%s\n", entermessagecommand.c_str());
             client->sendCommand(client->host, client->port, (char *)entermessagecommand.c_str(),enterMessageResponse);
@@ -374,6 +375,9 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
         client->sendCommand(client->host, client->port, (char *) leavecommand.c_str() , leaveResponse);
         //assuming leaveresponse is ok
         printf("LEAVE respoNSE is %s\n", leaveResponse);
+
+        curRoom = (char *) item->text().toStdString().c_str();
+        printf("%s cur room is %s\n", curRoom, item->text().toStdString().c_str());
 
 
 
@@ -407,7 +411,7 @@ void Dialog::updateUsers(){
 
     char * userlistresponse = new char[MAX_RESPONSE];
     std::string command2 = "GET-USERS-IN-ROOM ";
-    command2 = command2 + client->username + " " + client->password + " " + client->curRoom;
+    command2 = command2 + client->username + " " + client->password + " " + curRoom;
     client->sendCommand(client->host,client->port, (char *)command2.c_str(), userlistresponse);
     //building user list
     std::stringstream ss1(userlistresponse);
@@ -419,7 +423,7 @@ void Dialog::updateUsers(){
 void Dialog::updateMessages(){
     char * messagelistresponse = new char[MAX_RESPONSE];
     std::string command2 = "GET-MESSAGES ";
-    command2 = command2 + client->username + " " + client->password + " -1 " + client->curRoom;
+    command2 = command2 + client->username + " " + client->password + " -1 " + curRoom;
     client->sendCommand(client->host,client->port, (char *)command2.c_str(), messagelistresponse);
     //building messages
     allMessages->append(messagelistresponse);
