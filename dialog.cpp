@@ -389,6 +389,7 @@ void Dialog::updateUsers(){
     client->sendCommand(client->host,client->port, (char *)command.c_str(), numberofUsers);
 
 
+
     char * userlistresponse = new char[MAX_RESPONSE];
     std::string command2 = "GET-USERS-IN-ROOM ";
     command2 = command2 + client->username + " " + client->password + " " + client->curRoom;
