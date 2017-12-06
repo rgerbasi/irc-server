@@ -307,6 +307,8 @@ void Dialog::initialize(){
     std::string entermessagecommand = "SEND-MESSAGE ";
     char * enterMessageResponse = new char[MAX_RESPONSE];
     entermessagecommand = entermessagecommand + client->username + " " + client->password + " " + curRoom + " has entered the room.";
+    messageCount++;
+    curmessage = "-1";
     client->sendCommand(client->host, client->port, (char *)entermessagecommand.c_str(),enterMessageResponse);
 }
 void Dialog::sendAction()
@@ -317,6 +319,7 @@ void Dialog::sendAction()
     std::string command = "SEND-MESSAGE ";
     command = command + client->username + " " + client->password + " " + curRoom + " " + inputMessage->toPlainText().toStdString();
     client->sendCommand(client->host, client->port, (char *) command.c_str() , response );
+    messageCount++;
     inputMessage->clear();
 
 }
@@ -348,6 +351,7 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
         leavemessage = leavemessage + client->username + " " + client->password + " " + curRoom + " has left the room.";;
         client->sendCommand(client->host, client->port, (char *) leavemessage.c_str() , leaveResponse);
         //sent message to previous room that user has left
+        messageCount++;
 
         std::string leavecommand = "LEAVE-ROOM ";
         leavecommand = leavecommand + client->username + " " + client->password + " " + curRoom;
@@ -370,14 +374,23 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
             entermessagecommand = entermessagecommand + client->username + " " + client->password + " " + item->text().toStdString().c_str() + " has entered the room.";
             printf("emessage command%s\n", entermessagecommand.c_str());
             client->sendCommand(client->host, client->port, (char *)entermessagecommand.c_str(),enterMessageResponse);
+            messageCount++;
         }
 
-
         printf("%s cur room is %s\n", curRoom.c_str(), item->text().toStdString().c_str());
-
+        getMessages();
 
 
     }
+}
+void Dialog::getMessages(){
+    char * messagelistresponse = new char[MAX_RESPONSE];
+    std::string command2 = "GET-MESSAGES ";
+    command2 = command2 + client->username + " " + client->password + " -1 " + curRoom;
+    client->sendCommand(client->host,client->port, (char *)command2.c_str(), messagelistresponse);
+    //building messages
+    allMessages->append(messagelistresponse);
+
 }
 void Dialog::newUserAction()
 {
@@ -417,10 +430,14 @@ void Dialog::updateUsers(){
 void Dialog::updateMessages(){
     char * messagelistresponse = new char[MAX_RESPONSE];
     std::string command2 = "GET-MESSAGES ";
-    command2 = command2 + client->username + " " + client->password + " -1 " + curRoom;
+    command2 = command2 + client->username + " " + client->password + " "+ curmessage+" " + curRoom;
     client->sendCommand(client->host,client->port, (char *)command2.c_str(), messagelistresponse);
     //building messages
     allMessages->append(messagelistresponse);
+    std::stringstream ss;
+    ss<<messageCount;
+    printf("cur message is %s, message count is %d");
+    curmessage = ss.str();
 
 }
 

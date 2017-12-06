@@ -160,12 +160,14 @@ public:
 private:
     int messageCount;
     std::string curRoom;
+    std::string curmessage;
 
     //addition
     void initialize();
     void updateRooms();
     void updateUsers();
     void updateMessages();
+    void getMessages();
 
     void createMenu();
     void createHorizontalGroupBox();
