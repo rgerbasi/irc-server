@@ -302,7 +302,7 @@ void Dialog::initialize(){
     //here we will add existing users to the current users list and stuff :^)
     printf("INITIALIZE\n");
     //initialize user curRoom
-    curRoom = (char *)"lobby";
+    curRoom = "lobby";
 
     std::string entermessagecommand = "SEND-MESSAGE ";
     char * enterMessageResponse = new char[MAX_RESPONSE];
@@ -377,7 +377,7 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
         printf("LEAVE respoNSE is %s\n", leaveResponse);
 
         curRoom = (char *) item->text().toStdString().c_str();
-        printf("%s cur room is %s\n", curRoom, item->text().toStdString().c_str());
+        printf("%s cur room is %s\n", curRoom.c_str(), item->text().toStdString().c_str());
 
 
 
