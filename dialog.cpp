@@ -587,10 +587,10 @@ void Dialog::createMenu()
 }
 void Dialog::reject(){
     printf("DIALOG REJECT\n");
+    //parent reject
 
-
-
-
+    verification->show();
+    QDialog::reject();
 }
 
 //NEW WINDOW FOR USER VERIFICATION CLASS
