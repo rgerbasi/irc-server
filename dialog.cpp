@@ -344,6 +344,8 @@ void Dialog::selectRoomAction(QListWidgetItem * item){
         char * room = (char *) item->text().toStdString().c_str();
         char * prevroom = client->curRoom;
         //user has to leave previous room
+        if(!strcmp(room,prevroom)) return;
+
         char * leaveResponse = new char[MAX_RESPONSE];
         std::string leavecommand = "LEAVE-ROOM ";
         leavecommand = leavecommand + client->username + " " + client->password + " " + prevroom + " " + " has left the room.";
